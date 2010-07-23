@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    = csrf_meta_tag
+    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'print.css', :media => 'print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+
+    = javascript_include_tag 'jquery.min.js'
+    = javascript_include_tag 'jquery-ui.min.js'
+    = javascript_include_tag 'application.js'
+    = javascript_include_tag 'http://www.openlayers.org/dev/OpenLayers.js'
+    = javascript_include_tag 'http://svn.osgeo.org/metacrs/proj4js/trunk/lib/proj4js-combined.js'
+  %body
+    = yield
