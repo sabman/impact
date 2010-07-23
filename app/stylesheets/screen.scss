@@ -26,6 +26,17 @@ body.bp {
   @include blueprint-interaction;
   // Remove the scaffolding when you're ready to start doing visual design.
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
+  margin: 20px;
+  
+  #container {
+    @include container; }
+  
+  #footer{
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8em;
+    a {color: gray;}
+  }
 }
 
 form.bp {

@@ -13,3 +13,7 @@ group :test do
   gem "machinist"
   gem 'faker'
 end
+
+group :development do
+  gem "nifty-generators"  
+end
