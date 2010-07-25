@@ -89,6 +89,7 @@ body.bp #container { width: 950px; margin: 0 auto; overflow: hidden; display: in
 body.bp #container { display: block; }
 body.bp #footer { padding: 10px; text-align: center; font-size: 0.8em; }
 body.bp #footer a { color: gray; }
+body.bp #download_form { display: none; }
 
 form.bp label { font-weight: bold; }
 form.bp fieldset { padding: 1.4em; margin: 0 0 1.5em 0; }
