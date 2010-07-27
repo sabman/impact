@@ -10,7 +10,7 @@
 :javascript
   $(document).ready(function(){
     init_home_index_map();
-    $("a.download_data").click(function(){
+    $("#download_data").click(function(){
         $('#download_form').show();
         return false;
     });
@@ -29,8 +29,7 @@
   
   #map
   #projected_coords
-  #download_data
-    =link_to "Download Data", '#'
+  #download_data=link_to "Download Data", '#'
   #download_form
     %input{:name => "email", :type => "text", :value => "Please type your email here for notification"}
     %input{:name => "subscribe", :type => "submit", :value => "Download"}

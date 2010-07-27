@@ -16,5 +16,6 @@ group :test do
 end
 
 group :development do
-  gem "nifty-generators"  
+  gem "nifty-generators"
+  gem "annotate"
 end
