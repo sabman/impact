@@ -42,9 +42,9 @@ var veaer = new OpenLayers.Layer.VirtualEarth("Virtual Earth",
     
 // create Yahoo layer (only the default layer works, the hybrid and the
 // satellite ones do throw exceptions and rendering goes totally bye bye)
-var yahoosat = new OpenLayers.Layer.Yahoo("Yahoo Maps",
-					    {sphericalMercator: true}
-					    );
+// var yahoosat = new OpenLayers.Layer.Yahoo("Yahoo Maps",
+//              {sphericalMercator: true}
+//              );
   
 // Openlayers background
 var ol_wms = new OpenLayers.Layer.WMS("OpenLayers WMS",
@@ -107,22 +107,22 @@ var shakemap = new OpenLayers.Layer.WMS("Shakemap",
 				  );						  
 
 
-var eq_hazmap = new OpenLayers.Layer.WMS("Earthquake hazard map",
-				  "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-				  {
-				      layers: "test:mmi_intensity_10pc50",
-				      transparent: "true",
-				      format: "image/png"
-				  },
-				  {isBaseLayer: false, visibility: true, opacity: 0.8}
-				  );						  
+// var eq_hazmap = new OpenLayers.Layer.WMS("Earthquake hazard map",
+//          "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+//          {
+//              layers: "test:mmi_intensity_10pc50",
+//              transparent: "true",
+//              format: "image/png"
+//          },
+//          {isBaseLayer: false, visibility: true, opacity: 0.8}
+//          );              
 
 
 // Map extent for Indonesia in Spherical Mercator coordinates
 var initial_boundary = new OpenLayers.Bounds(9062374, -1374643, 15891564, 1130045);
 
 // Add the created layers to the map
-map.addLayers([gphy, gsat, ghyb, veaer, gmap, yahoosat, ol_wms, IDN1, IDN2, population, eq_hazmap]);
+map.addLayers([gphy, gsat, ghyb, veaer, gmap, ol_wms, IDN1, IDN2, population]);
 
 // Enable switching of layers	  
 map.addControl(new OpenLayers.Control.LayerSwitcher());

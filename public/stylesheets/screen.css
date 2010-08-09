@@ -21,7 +21,7 @@ body.bp hr.space { background: #dddddd; color: #dddddd; clear: both; float: none
 body.bp form.inline { line-height: 3; }
 body.bp form.inline p { margin-bottom: 0; }
 
-body.bp { line-height: 1.5; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; color: #333333; font-size: 75%; margin: 20px; }
+body.bp { line-height: 1.5; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; color: #333333; font-size: 100%; margin: 20px; }
 body.bp h1, body.bp h2, body.bp h3, body.bp h4, body.bp h5, body.bp h6 { font-weight: normal; color: #222222; }
 body.bp h1 img, body.bp h2 img, body.bp h3 img, body.bp h4 img, body.bp h5 img, body.bp h6 img { margin: 0; }
 body.bp h1 { font-size: 3em; line-height: 1; margin-bottom: 0.50em; }
@@ -74,7 +74,7 @@ body.bp .first { margin-left: 0; padding-left: 0; }
 body.bp .last { margin-right: 0; padding-right: 0; }
 body.bp .top { margin-top: 0; padding-top: 0; }
 body.bp .bottom { margin-bottom: 0; padding-bottom: 0; }
-body.bp .showgrid { background: url('/images/grid.png?1279863535'); }
+body.bp .showgrid { background: url('/images/grid.png?1281091661'); }
 body.bp .error { padding: 0.8em; margin-bottom: 1em; border: 2px solid #dddddd; background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
 body.bp .error a { color: #8a1f11; }
 body.bp .notice { padding: 0.8em; margin-bottom: 1em; border: 2px solid #dddddd; background: #fff6bf; color: #514721; border-color: #ffd324; }
@@ -89,7 +89,6 @@ body.bp #container { width: 950px; margin: 0 auto; overflow: hidden; display: in
 body.bp #container { display: block; }
 body.bp #footer { padding: 10px; text-align: center; font-size: 0.8em; }
 body.bp #footer a { color: gray; }
-body.bp #download_form { display: none; }
 
 form.bp label { font-weight: bold; }
 form.bp fieldset { padding: 1.4em; margin: 0 0 1.5em 0; }

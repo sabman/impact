@@ -10,11 +10,21 @@
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
 
-    = javascript_include_tag 'jquery.min.js'
-    = javascript_include_tag 'jquery-ui.min.js'
+    = javascript_include_tag 'jquery.min'
     = javascript_include_tag 'application.js'
     = javascript_include_tag 'http://www.openlayers.org/dev/OpenLayers.js'
     = javascript_include_tag 'http://svn.osgeo.org/metacrs/proj4js/trunk/lib/proj4js-combined.js'
+    = stylesheet_link_tag 'http://www.openlayers.org/dev/theme/default/style.css', :cache => true
+
+    / install uniform for nicer forms
+    = javascript_include_tag 'jquery.uniform.min', :cache => true
+    = stylesheet_link_tag '/javascripts/css/uniform.default.css', :cache => true
+    
+    :javascript
+      $(function(){
+        // $("select, input[type=checkbox], input[type=radio], input[type=file], input[type=submit], a.button, button").uniform();
+        $("input, text, submit, textarea, select, button").uniform();        
+      });    
     = yield(:head)
   %body.bp
     = yield
