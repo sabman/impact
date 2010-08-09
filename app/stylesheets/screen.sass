@@ -27,9 +27,19 @@ body.bp
   +blueprint-interaction
   // Remove the scaffolding when you're ready to start doing visual design.
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
-  margin: 20px
+  #header
+    margin-bottom: 15px
+    height: 90px
+    background: #fcfcfc url(/images/header/header_bg.gif) 0 100% repeat-x
+    #header_content
+      +container
+
   #container
     +container
+    
+    #map
+      +border-radius(4px)
+      
   #footer
     padding: 10px
     text-align: center
