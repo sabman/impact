@@ -14,7 +14,8 @@
     = javascript_include_tag 'application.js'
     = javascript_include_tag 'http://www.openlayers.org/dev/OpenLayers.js'
     = javascript_include_tag 'http://svn.osgeo.org/metacrs/proj4js/trunk/lib/proj4js-combined.js'
-    = stylesheet_link_tag 'http://www.openlayers.org/dev/theme/default/style.css', :cache => true
+    / = stylesheet_link_tag 'http://www.openlayers.org/dev/theme/default/style.css', :cache => true
+    %link{ :href=>"http://www.openlayers.org/dev/theme/default/style.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}
 
     / install uniform for nicer forms
     = javascript_include_tag 'jquery.uniform.min', :cache => true
