@@ -15,7 +15,7 @@ a img { border: none; }
 
 body.bp .box { padding: 1.5em; margin-bottom: 1.5em; background: #e5ecf9; }
 body.bp div.border { padding-right: 4px; margin-right: 5px; border-right: 1px solid #eeeeee; }
-body.bp div.colborder { padding-right: 24px; margin-right: 25px; border-right: 1px solid #eeeeee; }
+body.bp div.colborder { padding-right: 23px; margin-right: 24px; border-right: 1px solid #eeeeee; }
 body.bp hr { background: #dddddd; color: #dddddd; clear: both; float: none; width: 100%; height: 0.1em; margin: 0 0 1.45em; border: none; }
 body.bp hr.space { background: #dddddd; color: #dddddd; clear: both; float: none; width: 100%; height: 0.1em; margin: 0 0 1.45em; border: none; background: white; color: white; visibility: hidden; }
 body.bp form.inline { line-height: 3; }
@@ -86,9 +86,10 @@ body.bp .highlight { background: yellow; }
 body.bp .added { background: #006600; color: white; }
 body.bp .removed { background: #990000; color: white; }
 body.bp #header { margin-bottom: 15px; height: 90px; background: #fcfcfc url(/images/header/header_bg.gif) 0 100% repeat-x; }
-body.bp #header #header_content { width: 950px; margin: 0 auto; overflow: hidden; display: inline-block; }
+body.bp #header #header_content { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
 body.bp #header #header_content { display: block; }
-body.bp #container { width: 950px; margin: 0 auto; overflow: hidden; display: inline-block; }
+body.bp .pagehead { position: relative; margin-top: -30px; margin-left: auto; margin-right: auto; width: 920px; padding: 20px 25px 10px 25px; background: url(/images/pagehead/background-white.png) 0 0 no-repeat; }
+body.bp #container { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
 body.bp #container { display: block; }
 body.bp #container #map { -moz-border-radius: 4px; -webkit-border-radius: 4px; -o-border-radius: 4px; -ms-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; }
 body.bp #footer { padding: 10px; text-align: center; font-size: 0.8em; }
@@ -108,11 +109,11 @@ form.bp input.text:focus, form.bp input.title:focus, form.bp input[type=text]:fo
 form.bp input.text, form.bp input.title, form.bp input[type=text], form.bp input[type=password] { width: 300px; }
 form.bp textarea { width: 390px; height: 250px; }
 
-body.two-col #container { width: 950px; margin: 0 auto; overflow: hidden; display: inline-block; }
+body.two-col #container { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
 body.two-col #container { display: block; }
-body.two-col #header, body.two-col #footer { display: inline; float: left; margin-right: 10px; width: 950px; }
+body.two-col #header, body.two-col #footer { display: inline; float: left; margin-right: 10px; width: 920px; }
 * html body.two-col #header, * html body.two-col #footer { overflow-x: hidden; }
-body.two-col #sidebar { display: inline; float: left; margin-right: 10px; width: 310px; }
+body.two-col #sidebar { display: inline; float: left; margin-right: 10px; width: 300px; }
 * html body.two-col #sidebar { overflow-x: hidden; }
-body.two-col #content { display: inline; float: left; margin-right: 0; width: 630px; }
+body.two-col #content { display: inline; float: left; margin-right: 0; width: 610px; }
 * html body.two-col #content { overflow-x: hidden; }
