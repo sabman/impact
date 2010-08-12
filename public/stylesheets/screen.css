@@ -92,8 +92,18 @@ body.bp .pagehead { position: relative; margin-top: -30px; margin-left: auto; ma
 body.bp #container { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
 body.bp #container { display: block; }
 body.bp #container #map { -moz-border-radius: 4px; -webkit-border-radius: 4px; -o-border-radius: 4px; -ms-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; }
-body.bp #footer { padding: 10px; text-align: center; font-size: 0.8em; }
-body.bp #footer a { color: gray; }
+body.bp #footer { padding: 10px; font-size: 0.8em; background: none repeat scroll 0 0 #660000; border-top: 7px solid black; clear: both; color: #888888; margin-top: 30px; padding: 15px; }
+body.bp #footer a { color: #999999; }
+body.bp #footer #footer_content { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
+body.bp #footer #footer_content { display: block; }
+body.bp #footer #footer_content ul.pretty { margin-left: 0; }
+body.bp #footer #footer_content ul.pretty li { padding-left: 14px; background: url('/images/Right-arrow-12.png?1281391906') no-repeat 1px 3px; list-style-type: none; }
+body.bp #footer #footer_content ul.nobullets { list-style: none; }
+body.bp #footer #footer_content ul.nobullets li { list-style-image: none; list-style-type: none; margin-left: 0px; }
+body.bp #footer #footer_content #footer_left { display: inline; float: left; margin-right: 10px; width: 455px; }
+* html body.bp #footer #footer_content #footer_left { overflow-x: hidden; }
+body.bp #footer #footer_content #footer_right { display: inline; float: left; margin-right: 0; width: 455px; }
+* html body.bp #footer #footer_content #footer_right { overflow-x: hidden; }
 
 form.bp label { font-weight: bold; }
 form.bp fieldset { padding: 1.4em; margin: 0 0 1.5em 0; }

@@ -8,8 +8,7 @@ var options = {
     // this resolution displays the globe in one 256x256 pixel tile
     maxResolution: 78271.51695,
     // these are the bounds of the globe in sperical mercator
-    maxExtent: new OpenLayers.Bounds(-20037508, -20037508,
-				       20037508, 20037508)
+    maxExtent: new OpenLayers.Bounds(-20037508, -20037508,20037508, 20037508)
 };
   
 // construct a map with the above options
@@ -36,9 +35,8 @@ var gsat = new OpenLayers.Layer.Google(
 );
 
 // create Virtual Earth layer
-var veaer = new OpenLayers.Layer.VirtualEarth("Virtual Earth",
-						{type: VEMapStyle.Aerial, sphericalMercator: true}
-                                                  );
+var veaer = new OpenLayers.Layer.VirtualEarth("Virtual Earth", 
+  {type: VEMapStyle.Aerial, sphericalMercator: true});
     
 // create Yahoo layer (only the default layer works, the hybrid and the
 // satellite ones do throw exceptions and rendering goes totally bye bye)
@@ -48,39 +46,36 @@ var veaer = new OpenLayers.Layer.VirtualEarth("Virtual Earth",
   
 // Openlayers background
 var ol_wms = new OpenLayers.Layer.WMS("OpenLayers WMS",
-					"http://labs.metacarta.com/wms/vmap0",
-					{layers: "basic"}
-					);
+  "http://labs.metacarta.com/wms/vmap0",
+  {layers: "basic"});
 
 // Indonesian province boundaries as WMS
-var IDN0 = new OpenLayers.Layer.WMS("IDN 0",
-                                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-				      {
-					      layers: "test:gadm_IDN_0",
-					      transparent: "true",
-					      format: "image/png"
-				      },
-				      {isBaseLayer: false, visibility: false, opacity: 0.7}
-				     );
+var IDN0 = new OpenLayers.Layer.WMS("IDN 0","http://www.aifdr.org:8080/geoserver/wms?service=wms",
+  {
+    layers: "test:gadm_IDN_0",
+    transparent: "true",
+    format: "image/png"
+  },
+  {isBaseLayer: false, visibility: false, opacity: 0.7}
+);
 
-var IDN1 = new OpenLayers.Layer.WMS("IDN 1",
-			      "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-			      {
-				      layers: "test:gadm_IDN_1",
-				      transparent: "true",
-				      format: "image/png"
-			      },
-			      {isBaseLayer: false, visibility: true, opacity: 0.6}
-		             );
-					  
-					  
+var IDN1 = new OpenLayers.Layer.WMS("IDN 1", "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+  {
+    layers: "test:gadm_IDN_1",
+    transparent: "true",
+    format: "image/png"
+  },
+  {isBaseLayer: false, visibility: true, opacity: 0.6}
+);
+
+
 var IDN2 = new OpenLayers.Layer.WMS("IDN 2",
 			      "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-		              {
-				      layers: "test:gadm_IDN_2",
-				      transparent: "true",
-				      format: "image/png"
-			      },
+            {
+              layers: "test:gadm_IDN_2",
+              transparent: "true",
+              format: "image/png"
+            },
 			      {isBaseLayer: false, visibility: false, opacity: 0.5}
 			     );						  
 
