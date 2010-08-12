@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "rails", "3.0.0.beta4"
+gem "rails", "3.0.0.rc"
 gem "haml"
 gem "compass"
 gem "pg"
@@ -11,7 +11,7 @@ group :test do
   gem "capybara"
   gem "cucumber-rails"
   gem "cucumber"
-  gem "machinist"
+  gem "machinist", '>= 2.0.0.beta1'  
   gem 'faker'
 end
 
