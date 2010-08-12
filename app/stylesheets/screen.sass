@@ -15,6 +15,9 @@
 // @include blueprint
 @import compass/css3.sass
 
+
+@import compass/utilities/lists/bullets
+
 // But Compass recommends that you scope your blueprint styles
 // So that you can better control what pages use blueprint
 // when stylesheets are concatenated together.
@@ -50,10 +53,27 @@ body.bp
       
   #footer
     padding: 10px
-    text-align: center
     font-size: 0.8em
+    background: none repeat scroll 0 0 #660000
+    border-top: 7px solid #000000
+    clear: both
+    color: #888
+    margin-top: 30px
+    padding: 15px
     a
-      color: gray
+      color: #999
+    #footer_content
+      +container
+      ul.pretty
+        +pretty-bullets("Right-arrow-12.png", 12px, 12px)
+      ul.nobullets
+        +no-bullets
+      
+      #footer_left
+        +column(12)
+      #footer_right      
+        +column(12, true)
+      
 
 form.bp
   +blueprint-form
