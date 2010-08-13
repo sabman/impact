@@ -5,6 +5,7 @@ gem "haml"
 gem "compass"
 gem "pg"
 gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'em-websocket'
 
 group :test do
   gem "rspec-rails"
