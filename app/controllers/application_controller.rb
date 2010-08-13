@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
   def home
     render :template => 'home/index'
   end
+  
+  def sample
+    render :template => 'sample'
+  end
 end

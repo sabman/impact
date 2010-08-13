@@ -1,0 +1,7 @@
+production:
+    host: impact.nomad-labs.dyndns.org
+    port: 5000
+
+development:
+    host: localhost
+    port: 5000
