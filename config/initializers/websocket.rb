@@ -1,0 +1,1 @@
+WEBSOCKET_SERVER_CONFIG = YAML::load_file("#{Rails.root}/config/websocket.yml")[Rails.env]
