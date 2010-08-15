@@ -5,8 +5,9 @@ import pycurl
 import StringIO
 import json
 import helper
+import datetime
 
-source_path="../../../AIFDR/aifdr_subversion/riat-source/"
+source_path="./vendor/geoserver_api"
 sys.path.append(source_path)
 sys.path.append("./lib/riat_python_api")
 
@@ -14,7 +15,7 @@ from api import Geoserver, write_coverage_to_ascii
 # from config import webhost, datadir
 
 webhost="www.aifdr.org"
-webhost_local = "localhost"
+webhost_local = "aifdr.nomad-labs.dyndns.org"
 datadir="./geodata"
 # Output workspace
 workspace = 'impact'
@@ -70,8 +71,10 @@ F = 10**(a*H-b)*E
                          
 
 # Store result and upload
-layername = 'earthquake_fatalities_1hz10pc50'          
-                
+coordstr = "_".join(["%s" % c for c in bounding_box])
+timestr = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+layername = 'earthquake_fatalities_1hz10pc50'+ '_' + coordstr + '_' + timestr
+
 output_file = '%s/%s/%s.asc' % (datadir, workspace, layername)
 print 'Store result in:', output_file
 write_coverage_to_ascii(F, output_file, 
