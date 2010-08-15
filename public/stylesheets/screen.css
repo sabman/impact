@@ -21,6 +21,8 @@ body.bp hr.space { background: #dddddd; color: #dddddd; clear: both; float: none
 body.bp form.inline { line-height: 3; }
 body.bp form.inline p { margin-bottom: 0; }
 
+@font-face { font-family: "FontinSansCyrillic"; src: local("FontinSansCyrillic"), url(/fonts/FontinSans_Cyrillic_B_46b.otf) format('opentype'); }
+
 body.bp { line-height: 1.5; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; color: #333333; font-size: 100%; }
 body.bp h1, body.bp h2, body.bp h3, body.bp h4, body.bp h5, body.bp h6 { font-weight: normal; color: #222222; }
 body.bp h1 img, body.bp h2 img, body.bp h3 img, body.bp h4 img, body.bp h5 img, body.bp h6 img { margin: 0; }
@@ -66,7 +68,8 @@ body.bp .quiet { color: #666666; }
 body.bp .loud { color: #111111; }
 body.bp .clear { clear: both; }
 body.bp .nowrap { white-space: nowrap; }
-body.bp .clearfix { overflow: hidden; *zoom: 1; }
+body.bp .clearfix { overflow: hidden; display: inline-block; }
+body.bp .clearfix { display: block; }
 body.bp .small { font-size: 0.8em; margin-bottom: 1.875em; line-height: 1.875em; }
 body.bp .large { font-size: 1.2em; line-height: 2.5em; margin-bottom: 1.25em; }
 body.bp .first { margin-left: 0; padding-left: 0; }
@@ -85,15 +88,17 @@ body.bp .highlight { background: yellow; }
 body.bp .added { background: #006600; color: white; }
 body.bp .removed { background: #990000; color: white; }
 body.bp #header { margin-bottom: 15px; height: 90px; background: #fcfcfc url(/images/header/header_bg.gif) 0 100% repeat-x; }
-body.bp #header #header_content { width: 920px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body.bp #header #header_content { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; padding-top: 16px; }
+body.bp #header #header_content { display: block; }
+body.bp #header #header_content h2 { text-shadow: #aaaaaa 1px 1px 1px; color: #660000; font-family: FontinSansCyrillic; }
 body.bp .pagehead { position: relative; margin-top: -30px; margin-left: auto; margin-right: auto; width: 920px; padding: 20px 25px 10px 25px; background: url(/images/pagehead/background-white.png) 0 0 no-repeat; }
-body.bp #container { width: 920px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body.bp #container { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
+body.bp #container { display: block; }
 body.bp #container #map { -moz-border-radius: 4px; -webkit-border-radius: 4px; -o-border-radius: 4px; -ms-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; }
 body.bp #footer { padding: 10px; font-size: 0.8em; background: none repeat scroll 0 0 #660000; border-top: 7px solid black; clear: both; color: #888888; margin-top: 30px; padding: 15px; }
 body.bp #footer a { color: #999999; }
-body.bp #footer #footer_content { width: 920px; margin: 0 auto; overflow: hidden; *zoom: 1; }
-body.bp #footer #footer_content ul.pretty { margin-left: 0; }
-body.bp #footer #footer_content ul.pretty li { padding-left: 14px; background: url('/images/Right-arrow-12.png') no-repeat 1px 3px; list-style-type: none; }
+body.bp #footer #footer_content { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
+body.bp #footer #footer_content { display: block; }
 body.bp #footer #footer_content ul.nobullets { list-style: none; }
 body.bp #footer #footer_content ul.nobullets li { list-style-image: none; list-style-type: none; margin-left: 0px; }
 body.bp #footer #footer_content #footer_left { display: inline; float: left; margin-right: 10px; width: 455px; }
@@ -104,18 +109,19 @@ body.bp #footer #footer_content #footer_right { display: inline; float: left; ma
 form.bp label { font-weight: bold; }
 form.bp fieldset { padding: 1.4em; margin: 0 0 1.5em 0; }
 form.bp legend { font-weight: bold; font-size: 1.2em; }
-form.bp input.text, form.bp input.title, form.bp input[type=email], form.bp input[type=text], form.bp input[type=password] { margin: 0.5em 0; background-color: white; padding: 5px; }
+form.bp input.text, form.bp input.title, form.bp input[type=text], form.bp input[type=password] { margin: 0.5em 0; background-color: white; padding: 5px; }
 form.bp input.title { font-size: 1.5em; }
 form.bp input[type=checkbox], form.bp input.checkbox, form.bp input[type=radio], form.bp input.radio { position: relative; top: 0.25em; }
 form.bp textarea { margin: 0.5em 0; padding: 5px; }
 form.bp select { margin: 0.5em 0; }
 form.bp fieldset { border: 1px solid #cccccc; }
-form.bp input.text, form.bp input.title, form.bp input[type=email], form.bp input[type=text], form.bp input[type=password], form.bp textarea, form.bp select { border: 1px solid #bbbbbb; }
-form.bp input.text:focus, form.bp input.title:focus, form.bp input[type=email]:focus, form.bp input[type=text]:focus, form.bp input[type=password]:focus, form.bp textarea:focus, form.bp select:focus { border: 1px solid #666666; }
-form.bp input.text, form.bp input.title, form.bp input[type=email], form.bp input[type=text], form.bp input[type=password] { width: 300px; }
+form.bp input.text, form.bp input.title, form.bp input[type=text], form.bp input[type=password], form.bp textarea, form.bp select { border: 1px solid #bbbbbb; }
+form.bp input.text:focus, form.bp input.title:focus, form.bp input[type=text]:focus, form.bp input[type=password]:focus, form.bp textarea:focus, form.bp select:focus { border: 1px solid #666666; }
+form.bp input.text, form.bp input.title, form.bp input[type=text], form.bp input[type=password] { width: 300px; }
 form.bp textarea { width: 390px; height: 250px; }
 
-body.two-col #container { width: 920px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body.two-col #container { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
+body.two-col #container { display: block; }
 body.two-col #header, body.two-col #footer { display: inline; float: left; margin-right: 10px; width: 920px; }
 * html body.two-col #header, * html body.two-col #footer { overflow-x: hidden; }
 body.two-col #sidebar { display: inline; float: left; margin-right: 10px; width: 300px; }

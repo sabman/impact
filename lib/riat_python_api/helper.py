@@ -3,4 +3,5 @@ def parse_named_param(string):
     k, v = string.split("=")
     if k == "bbox":
         val = eval(v)
-    return [k, val]
+        v = val
+    return [k, v]

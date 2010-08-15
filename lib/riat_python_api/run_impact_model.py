@@ -5,16 +5,22 @@ import pycurl
 import StringIO
 import json
 import helper
+import datetime
+import yaml
 
-source_path="../../../AIFDR/aifdr_subversion/riat-source/"
+source_path="./vendor/geoserver_api"
 sys.path.append(source_path)
 sys.path.append("./lib/riat_python_api")
+
+stream = file('./config/geoserver.yml', 'r')
+gs_config = yaml.load(stream)
 
 from api import Geoserver, write_coverage_to_ascii
 # from config import webhost, datadir
 
 webhost="www.aifdr.org"
-webhost_local = "localhost"
+# webhost_local = "aifdr.nomad-labs.dyndns.org"
+webhost_local = gs_config['host']
 datadir="./geodata"
 # Output workspace
 workspace = 'impact'
@@ -24,8 +30,14 @@ for arg in sys.argv[1:]:
     named_param = helper.parse_named_param(arg)
     if named_param[0] == "bbox":
         bbox = named_param[1]
+    if named_param[0] == "timestamp":
+        timestamp = named_param[1]
+    if named_param[0] == "coordstr":
+        coordstr = named_param[1]
+    
 
 print bbox 
+print timestamp
 
 # Fatality model parameters (Allen 2010:-)
 a = 0.97429
@@ -42,7 +54,7 @@ geoserver = Geoserver('http://%s:8080/geoserver' % webhost,
                       'admin',
                       'geoserver')        
 
-geoserver_local = Geoserver('http://%s:8080/geoserver' % webhost_local,
+geoserver_local = Geoserver('http://%s/geoserver' % webhost_local,
                     'admin',
                     'geoserver')    
 
@@ -70,8 +82,8 @@ F = 10**(a*H-b)*E
                          
 
 # Store result and upload
-layername = 'earthquake_fatalities_1hz10pc50'          
-                
+layername = 'earthquake_fatalities_1hz10pc50'+ '_' + timestamp
+
 output_file = '%s/%s/%s.asc' % (datadir, workspace, layername)
 print 'Store result in:', output_file
 write_coverage_to_ascii(F, output_file, 

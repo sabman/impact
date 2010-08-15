@@ -23,7 +23,7 @@
       };
       ws.onmessage = function(e) {
         // e.data contains received string.
-        output("onmessage: " + e.data);
+        output(e.data);
       };
       ws.onclose = function() {
         output("onclose");
@@ -38,7 +38,7 @@
       var input = document.getElementById("input");
       // You can send message to the Web Socket using ws.send.
       ws.send(input.value);
-      output("send: " + input.value);
+      output("<h2>Impact analysis started...</h2>");
       input.value = "";
       input.focus();
     }
@@ -49,9 +49,10 @@
   
     function output(str) {
       var log = document.getElementById("log");
-      var escaped = str.replace(/&/, "&amp;").replace(/</, "&lt;").
-        replace(/>/, "&gt;").replace(/"/, "&quot;"); // "
-      log.innerHTML = escaped + "<br>" + log.innerHTML;
+      // var escaped = str.replace(/&/, "&amp;").replace(/</, "&lt;").
+      //   replace(/>/, "&gt;").replace(/"/, "&quot;"); // "
+      // log.innerHTML = escaped + "<br>" + log.innerHTML;
+      log.innerHTML = str + "<br>"
     }
     
     $('document').ready(function () {
@@ -60,7 +61,10 @@
 #container
   #content
     %form{:onsubmit => "onSubmit(); return false;"}
-      %input#input{:type => "text"}/
-      %input{:type => "submit", :value => "Send"}/
+      %input#input{:type => "text", :value => "[106,-7.5,107,-6]"}/ 
+      %br
+      %span.quiet.small enter bounding box e.g. [106,-7.5,107,-6]
+      %br      
+      %input{:type => "submit", :value => "Submit"}/
       %button{:onclick => "onCloseClick(); return false;"} close
     #log
