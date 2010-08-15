@@ -1,5 +1,6 @@
 .DS_Store
 config/database.yml
+config/geoserver.yml
 coverage/*
 db/*.sqlite3
 log/*.log
@@ -10,3 +11,5 @@ vendor/geoserver_api
 db/schema.rb
 geodata/impact/*
 .dropbox
+.rbc
+.pyc

@@ -88,7 +88,7 @@ body.bp .highlight { background: yellow; }
 body.bp .added { background: #006600; color: white; }
 body.bp .removed { background: #990000; color: white; }
 body.bp #header { margin-bottom: 15px; height: 90px; background: #fcfcfc url(/images/header/header_bg.gif) 0 100% repeat-x; }
-body.bp #header #header_content { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; padding-top: 10px; }
+body.bp #header #header_content { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; padding-top: 16px; }
 body.bp #header #header_content { display: block; }
 body.bp #header #header_content h2 { text-shadow: #aaaaaa 1px 1px 1px; color: #660000; font-family: FontinSansCyrillic; }
 body.bp .pagehead { position: relative; margin-top: -30px; margin-left: auto; margin-right: auto; width: 920px; padding: 20px 25px 10px 25px; background: url(/images/pagehead/background-white.png) 0 0 no-repeat; }
