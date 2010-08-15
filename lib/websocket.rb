@@ -3,6 +3,7 @@
 require "rubygems"
 require "em-websocket"
 require "yaml"
+require "fileutils"
 
 # usage = "websocket.rb [start | stop | restart]"
 
