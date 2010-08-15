@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.0.rc)
       activesupport (= 3.0.0.rc)
     activesupport (3.0.0.rc)
+    addressable (2.2.0)
     annotate (2.4.0)
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
@@ -51,8 +52,12 @@ GEM
       cucumber (>= 0.8.0)
     culerity (0.2.10)
     diff-lcs (1.1.2)
+    em-websocket (0.1.3)
+      addressable (>= 2.1.1)
+      eventmachine (>= 0.12.9)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    eventmachine (0.12.10)
     faker (0.3.1)
     ffi (0.6.3)
       rake (>= 0.8.7)
@@ -116,6 +121,7 @@ DEPENDENCIES
   compass
   cucumber
   cucumber-rails
+  em-websocket
   faker
   haml
   machinist (>= 2.0.0.beta1)

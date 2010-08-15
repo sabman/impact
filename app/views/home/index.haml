@@ -4,27 +4,18 @@
   %script{:src => "http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&mkt=en-us"}
   %script{:src => "http://maps.google.com/maps/api/js?sensor=false"}
   = javascript_include_tag 'home_index_map.js'
-  
-
-:javascript
-  $(document).ready(function(){
-    init_home_index_map();
-  });
-  
-
+  = stylesheet_link_tag "scrollable", :cache => true
+  = javascript_include_tag "jquery.tools.min", :cache => true
 
 .pagehead
   %p
-    The Hazard Impact Tool allows rapid impact assessments at the district level for a range of hazards and scenarios. Select the hazard and the scenario and the tool will provide estimates of people impacted in each district.
+    The Hazard Impact Tool allows rapid impact assessments at the district level for
+    a range of hazards and scenarios. Select the hazard and the scenario and the tool
+    will provide estimates of people impacted in each district.
 
 #container
   #content
-    %div=link_to "1 Select Hazard", "#"
-    
-    %div=link_to "2 Select Exposure", "#"
-    
-    %div=link_to "3 View Impact", "#"
-  
+    =render :partial => "home/scrollable"  
     #map
     #projected_coords
     #download
@@ -35,3 +26,9 @@
     / #legend 
     /   %image{:src => "http://www.aifdr.org:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=100&HEIGHT=20&LAYER=test:mmi_intensity_10pc50&LEGEND_OPTIONS=forceRule:True"}
 
+:javascript
+  $(document).ready(function(){
+    init_home_index_map();
+    // initialize scrollable
+  	$(".scrollable").scrollable();    
+  });
