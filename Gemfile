@@ -6,7 +6,8 @@ gem "compass"
 gem "pg"
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'em-websocket'
-
+gem 'daemons'
+ 
 group :test do
   gem "rspec-rails"
   gem "capybara"
