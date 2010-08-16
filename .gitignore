@@ -11,6 +11,7 @@ vendor/geoserver_api
 db/schema.rb
 geodata/impact/*
 .dropbox
-.rbc
-.pyc
+*.rbc
+*.pyc
 app/stylesheets/.sass-cache
+nohup.out
