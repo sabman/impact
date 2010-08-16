@@ -1,7 +1,7 @@
 ImpactForecast::Application.routes.draw do |map|
   
   root :to => "application#home"
-  match '/sample' => "application#sample"
+  match '/sandbox' => "application#sandbox"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

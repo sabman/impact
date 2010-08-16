@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     render :template => 'home/index'
   end
   
-  def sample
+  def sandbox
     render :template => 'sample'
   end
 end
