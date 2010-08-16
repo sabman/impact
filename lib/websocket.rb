@@ -24,7 +24,7 @@ EventMachine.run {
       ws.onmessage { |msg|
         puts msg
         if msg == nil or msg == ''
-          ws.send "Please provide bounding coordinates e.g: [106,-7.5,110,-3]"
+          ws.send "<div class='error'>Please provide bounding coordinates e.g: [106,-7.5,110,-3]</div>"
         else
           bbox = msg.delete("[").delete("]").split(",").collect{|v| v.to_f }
           coordstr = bbox.join("_")
