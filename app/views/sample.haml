@@ -23,6 +23,8 @@
       };
       ws.onmessage = function(e) {
         // e.data contains received string.
+        $("#status").hide('fast');
+        $("#impact_form").show('fast');
         output(e.data);
       };
       ws.onclose = function() {
@@ -38,7 +40,12 @@
       var input = document.getElementById("input");
       // You can send message to the Web Socket using ws.send.
       ws.send(input.value);
-      output("<h2>Impact analysis started...</h2>");
+
+      $("#status").html("Impact analysis started...")
+      $("#status").show('fast');     
+      $("#log").hide('fast');
+      $("#impact_form").hide('fast');
+      
       input.value = "";
       input.focus();
     }
@@ -49,10 +56,10 @@
   
     function output(str) {
       var log = document.getElementById("log");
-      // var escaped = str.replace(/&/, "&amp;").replace(/</, "&lt;").
-      //   replace(/>/, "&gt;").replace(/"/, "&quot;"); // "
-      // log.innerHTML = escaped + "<br>" + log.innerHTML;
       log.innerHTML = str + "<br>"
+      $("#log").addClass("notice");
+      $("#log").show('fast');      
+      $("#impact_form").show('slow');
     }
     
     $('document').ready(function () {
@@ -60,11 +67,14 @@
     })
 #container
   #content
-    %form{:onsubmit => "onSubmit(); return false;"}
-      %input#input{:type => "text", :value => "[106,-7.5,107,-6]"}/ 
-      %br
-      %span.quiet.small enter bounding box e.g. [106,-7.5,107,-6]
-      %br      
-      %input{:type => "submit", :value => "Submit"}/
-      %button{:onclick => "onCloseClick(); return false;"} close
+    #status.notice
+      Loading...
+    #impact_form{:style => "display:none"}
+      %form{:onsubmit => "onSubmit(); return false;"}
+        %input#input{:type => "text", :value => "[106,-7.5,107,-6]"}/ 
+        %br
+        %span.quiet.small enter bounding box e.g. [106,-7.5,107,-6]
+        %br      
+        %input{:type => "submit", :value => "Submit"}/
+        %button{:onclick => "onCloseClick(); return false;"} close
     #log
