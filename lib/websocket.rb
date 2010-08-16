@@ -7,11 +7,11 @@ require "fileutils"
 
 # usage = "websocket.rb [start | stop | restart]"
 
+riat_websocket_root_dir = File.open('/tmp/riat_websocket_root_dir.txt' ).read
 
 EventMachine.run {
   # EventMachine::WebSocket.stop if ARGV[0] == "stop"
-  puts FileUtils.pwd
-
+  puts riat_websocket_root_dir
   EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 5000) do |ws|
       ws.onopen {
         puts "WebSocket connection open"
@@ -22,7 +22,6 @@ EventMachine.run {
 
       ws.onclose { puts "Connection closed" }
       ws.onmessage { |msg|
-        puts FileUtils.pwd
         puts msg
         if msg == nil or msg == ''
           ws.send "Please provide bounding coordinates e.g: [106,-7.5,110,-3]"
@@ -30,8 +29,8 @@ EventMachine.run {
           bbox = msg.delete("[").delete("]").split(",").collect{|v| v.to_f }
           coordstr = bbox.join("_")
           timestamp = Time.now.strftime('%Y%m%d%H%M%S')
-          geoserver_url = YAML.load_file('./config/geoserver.yml')['host']
-          system "python ./lib/riat_python_api/run_impact_model.py \
+          geoserver_url = YAML.load_file("#{riat_websocket_root_dir}/./config/geoserver.yml")['host']
+          system "python #{riat_websocket_root_dir}/./lib/riat_python_api/run_impact_model.py \
             bbox=#{msg} \
             timestamp=#{timestamp}"
           layername = "impact:earthquake_fatalities_1hz10pc50_#{timestamp}"

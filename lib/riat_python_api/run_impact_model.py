@@ -8,11 +8,14 @@ import helper
 import datetime
 import yaml
 
-source_path="./vendor/geoserver_api"
+f = open('/tmp/riat_websocket_root_dir.txt', 'r')
+riat_websocket_root_dir = f.read()
+print riat_websocket_root_dir
+source_path=riat_websocket_root_dir+"/"+"vendor/geoserver_api"
 sys.path.append(source_path)
-sys.path.append("./lib/riat_python_api")
+sys.path.append(riat_websocket_root_dir+"/"+"lib/riat_python_api")
 
-stream = file('./config/geoserver.yml', 'r')
+stream = file(riat_websocket_root_dir+"/"+'config/geoserver.yml', 'r')
 gs_config = yaml.load(stream)
 
 from api import Geoserver, write_coverage_to_ascii
@@ -21,7 +24,7 @@ from api import Geoserver, write_coverage_to_ascii
 webhost="www.aifdr.org"
 # webhost_local = "aifdr.nomad-labs.dyndns.org"
 webhost_local = gs_config['host']
-datadir="./geodata"
+datadir=riat_websocket_root_dir+"/"+"geodata"
 # Output workspace
 workspace = 'impact'
 
