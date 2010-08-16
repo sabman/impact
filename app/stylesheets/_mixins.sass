@@ -1,0 +1,192 @@
+//----- Mix-ins variables --------------
+
+$tiny_rounded_radius: 2px
+$small_rounded_radius: 4px
+$medium_rounded_radius: 6px
+$large_rounded_radius: 8px
+
+//----- Text ------------------------
+
+=light_inset
+  text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0
+
+=dark_inset
+  text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px
+
+=small_headline
+  letter-spacing: 0.25em
+  font-size: 10px
+  font-weight: bold
+  text-transform: uppercase
+
+//----- Rounded corners ------------------------
+
+=tiny_rounded
+  -webkit-border-radius: $tiny_rounded_radius
+  -moz-border-radius: $tiny_rounded_radius
+
+=tiny_rounded_top
+  -webkit-border-top-left-radius: $tiny_rounded_radius
+  -webkit-border-top-right-radius: $tiny_rounded_radius
+  -moz-border-radius-topleft: $tiny_rounded_radius
+  -moz-border-radius-topright: $tiny_rounded_radius
+
+=tiny_rounded_bottom
+  -webkit-border-bottom-left-radius: $tiny_rounded_radius
+  -webkit-border-bottom-right-radius: $tiny_rounded_radius
+  -moz-border-radius-bottomleft: $tiny_rounded_radius
+  -moz-border-radius-bottomright: $tiny_rounded_radius
+
+=small_rounded
+  -webkit-border-radius: $small_rounded_radius
+  -moz-border-radius: $small_rounded_radius
+
+=small_rounded_top
+  -webkit-border-top-left-radius: $small_rounded_radius
+  -webkit-border-top-right-radius: $small_rounded_radius
+  -moz-border-radius-topleft: $small_rounded_radius
+  -moz-border-radius-topright: $small_rounded_radius
+
+=small_rounded_bottom
+  -webkit-border-bottom-left-radius: $small_rounded_radius
+  -webkit-border-bottom-right-radius: $small_rounded_radius
+  -moz-border-radius-bottomleft: $small_rounded_radius
+  -moz-border-radius-bottomright: $small_rounded_radius
+
+=small_rounded_right
+  -webkit-border-top-right-radius: $small_rounded_radius
+  -webkit-border-bottom-right-radius: $small_rounded_radius
+  -moz-border-radius-topright: $small_rounded_radius
+  -moz-border-radius-bottomright: $small_rounded_radius
+
+=small_rounded_left
+  -webkit-border-top-left-radius: $small_rounded_radius
+  -webkit-border-bottom-left-radius: $small_rounded_radius
+  -moz-border-radius-topleft: $small_rounded_radius
+  -moz-border-radius-bottomleft: $small_rounded_radius
+
+=medium_rounded
+  -webkit-border-radius: $medium_rounded_radius
+  -moz-border-radius: $medium_rounded_radius
+
+=medium_rounded_top
+  -webkit-border-top-left-radius: $medium_rounded_radius
+  -webkit-border-top-right-radius: $medium_rounded_radius
+  -moz-border-radius-topleft: $medium_rounded_radius
+  -moz-border-radius-topright: $medium_rounded_radius
+
+=medium_rounded_bottom
+  -webkit-border-bottom-left-radius: $medium_rounded_radius
+  -webkit-border-bottom-right-radius: $medium_rounded_radius
+  -moz-border-radius-bottomleft: $medium_rounded_radius
+  -moz-border-radius-bottomright: $medium_rounded_radius
+
+=large_rounded
+  -webkit-border-radius: $large_rounded_radius
+  -moz-border-radius: $large_rounded_radius
+
+=large_rounded_top
+  -webkit-border-top-left-radius: $large_rounded_radius
+  -webkit-border-top-right-radius: $large_rounded_radius
+  -moz-border-radius-topleft: $large_rounded_radius
+  -moz-border-radius-topright: $large_rounded_radius
+
+=large_rounded_bottom
+  -webkit-border-bottom-left-radius: $large_rounded_radius
+  -webkit-border-bottom-right-radius: $large_rounded_radius
+  -moz-border-radius-bottomleft: $large_rounded_radius
+  -moz-border-radius-bottomright: $large_rounded_radius
+
+//----- Buttons ------------------------
+
+=button
+  color: white
+  cursor: pointer
+  display: inline-block
+  font-family: Helvetica, "HelveticaNeue", Arial, sans-serif
+  line-height: 1
+  margin-top: 2px
+  position: relative
+  text-decoration: none
+
+=xlarge_button
+  +button
+  +dark_inset
+  +large_rounded
+  padding: 11px 20px 14px
+  font-size: 24px
+  -moz-box-shadow: 0 2px 8px #999999
+  -webkit-box-shadow: 0 2px 8px #999999
+  border: 2px solid #222222
+
+=large_button
+  +button
+  +dark_inset
+  +medium_rounded
+  padding: 11px 20px 14px
+  font-family: Helvetica, "HelveticaNeue", Arial, sans-serif
+  font-size: 18px
+  -moz-box-shadow: 0 2px 5px #999999
+  -webkit-box-shadow: 0 2px 5px #999999
+  border: 2px solid #222222
+
+=medium_button
+  +button
+  +dark_inset
+  +medium_rounded
+  padding: 9px 14px 9px
+  font-family: Helvetica, "HelveticaNeue", Arial, sans-serif
+  font-size: 14px
+  font-weight: bold
+  -moz-box-shadow: 0 2px 5px #999999
+  -webkit-box-shadow: 0 2px 5px #999999
+  border: 1px solid #222222
+
+=small_button
+  +button
+  +small_rounded
+  border: 1px solid #222222
+  font-size: 11px
+  line-height: 1.6em
+  margin: 1px 5px 3px
+  padding: 5px 10px 6px
+  text-shadow: rgba(0, 0, 0, 0.2) 0 -1px 1px
+  -moz-box-shadow: 0 1px 3px #999999
+  -webkit-box-shadow: 0 1px 3px #999999
+
+=blue_button
+  background: #3583cf
+  background: -webkit-gradient(linear, left top, left bottom, from(#629ed9), to(#3583cf))
+  border-color: #bbe2f8
+
+=green_button
+  background: #6ca520
+  background: -webkit-gradient(linear, left top, left bottom, from(#90bb58), to(#6ca520))
+  border-color: #dcf1bf
+
+=green_button_invert
+  background: #90bb58
+  background: -webkit-gradient(linear, left top, left bottom, from(#6ca520), to(#90bb58))
+  border-color: #dcf1bf
+
+=brown_button
+  background: #4b3d2f
+  background: -webkit-gradient(linear, left top, left bottom, from(#816a51), to(#4b3d2f))
+  border-color: #bab390
+
+=light_brown_button
+  background: #b5ac77
+  background: -webkit-gradient(linear, left top, left bottom, from(#b5ac77), to(#a59c64))
+  border-color: #f9f3d1
+
+=red_button
+  background: #c21c1c
+  background: -webkit-gradient(linear, left top, left bottom, from(#c21c1c), to(#7d1515))
+  border-color: #ffe1e1
+
+=light-grey-button
+  background: #ccc
+  background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#aaa))
+  border-color: #efefef
+  -moz-box-shadow: 0 2px 5px #ccc
+  -webkit-box-shadow: 0 2px 5px #ccc

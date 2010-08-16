@@ -4,6 +4,7 @@ require "rubygems"
 require "em-websocket"
 require "yaml"
 require "fileutils"
+require 'json'
 
 # usage = "websocket.rb [start | stop | restart]"
 
@@ -35,19 +36,26 @@ EventMachine.run {
             bbox=#{msg} \
             timestamp=#{timestamp}"
           layername = "impact:earthquake_fatalities_1hz10pc50_#{timestamp}"
-          ws.send "
-          <br/>
-          <h3>New Impact Results</h3>
-          <p>
-            <strong>Timestamp:</strong>     #{timestamp}<br/>
-            <strong>Layer name:</strong>     #{layername}<br/>
-            <strong>Bounding box::</strong> #{msg}<br/>
-            
-            <img border=\"0\" src='/images/Google-Earth-32.png'/>
-            <a href=\"http://#{geoserver_url}/geoserver/wms/kml?layers=#{layername}&legend=true\">
-              View impact in Google Earth
-            </a>            
-          </p>"          
+          resp = { "impact" => {
+                "timestamp"     => timestamp,
+                "layername"     => layername,
+                "bounding_box"  => bbox,
+                "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{layername}&legend=true"}}
+          ws.send resp.to_json
+          
+          # "
+          # <br/>
+          # <h3>New Impact Results</h3>
+          # <p>
+          #   <strong>Timestamp:</strong>     #{timestamp}<br/>
+          #   <strong>Layer name:</strong>     #{layername}<br/>
+          #   <strong>Bounding box::</strong> #{msg}<br/>
+          #   
+          #   <img border=\"0\" src='/images/Google-Earth-32.png'/>
+          #   <a href=\"http://#{geoserver_url}/geoserver/wms/kml?layers=#{layername}&legend=true\">
+          #     View impact in Google Earth
+          #   </a>            
+          # </p>"          
         end
       }
   end

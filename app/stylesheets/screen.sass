@@ -18,6 +18,10 @@
 
 @import compass/utilities/lists/bullets
 
+// Import custom mixins
+@import _mixins
+
+
 // But Compass recommends that you scope your blueprint styles
 // So that you can better control what pages use blueprint
 // when stylesheets are concatenated together.
@@ -32,17 +36,20 @@ body.bp
   +blueprint-interaction
   // Remove the scaffolding when you're ready to start doing visual design.
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
+  -webkit-font-smoothing: antialiased
   #header
-    margin-bottom: 15px
-    height: 90px
-    background: #fcfcfc url(/images/header/header_bg.gif) 0 100% repeat-x
+    margin-bottom: 10px
+    background: #a00
     #header_content
       +container
       padding-top: 16px
       h2
-        +text-shadow
-        color: #600
+        +dark_inset
+        color: #fff
         font-family: FontinSansCyrillic
+        text-align: center
+        font-size: 40px
+        letter-spacing: -.03em
 
   .pagehead
     position: relative
@@ -50,34 +57,39 @@ body.bp
     margin-left: auto
     margin-right: auto
     width: 920px
-    padding: 20px 25px 10px 25px
+    padding: 20px 25px 0 25px
     background: url(/images/pagehead/background-white.png) 0 0 no-repeat
 
-  #container
-    +container    
-    #map
-      +border-radius(4px)
+  .container
+    +container
       
   #footer
     padding: 10px
     font-size: 0.8em
-    background: none repeat scroll 0 0 #660000
-    border-top: 7px solid #000000
+    background: none repeat scroll 0 0 #a00
+    border-top: 3px solid #ccc
     clear: both
     color: #888
     margin-top: 30px
-    padding: 15px
+    padding: 20px 0
     a
-      color: #999
+      color: #fff
     #footer_content
       +container
-      ul.nobullets
-        +no-bullets
-      
+      ul
+        list-style: none
+        padding-left: 0
       #footer_left
         +column(12)
       #footer_right      
         +column(12, true)
+  
+  a
+    color: #36c
+    &:visited
+      color: #600
+    &:hover, &:focus
+      color: #a00
       
 
 form.bp
@@ -93,9 +105,86 @@ body.two-col
     // One third of the grid columns, rounding down. With 24 cols, this is 8.
     $sidebar-columns: floor($blueprint-grid-columns / 3)
     +column($sidebar-columns)
-  #content
+  .container
     // Two thirds of the grid columns, rounding up.
     // With 24 cols, this is 16.
     $content-columns: ceil(2 * $blueprint-grid-columns / 3)
     // true means it's the last column in the row
     +column($content-columns, true)
+
+
+// Builder thing
+#builder
+  +container
+  border-top: 1px #ccc dashed
+  font-size: 14px
+  .map, .hazard, .exposure
+    +column(6)
+    min-height: 130px
+    _height: 130px
+    padding-top: 15px
+    h2, p
+      margin-right: 10px
+  .action
+    +column(6, true)
+    min-height: 130px
+    _height: 120px
+    padding-top: 15px
+    width: 220px
+    button
+      margin: 10px
+      +large_button
+      +blue-button
+      &:hover
+        +green_button
+      &.disabled
+        +light-grey-button
+  h2
+    font-size: 16px
+    font-weight: bold
+  .help
+    color: #777
+    font-size: 12px
+  select
+    border: 1px solid #ccc
+    color: #333
+    display: block
+    font: normal 14px / 1.5 "Helvetica Neue", Helvetica, Arial, sans-serif
+    padding: 5px 3px 5px
+    margin: 5px 0 15px
+    height: 2.1em
+    position: relative
+    &:focus
+      border-color: #000
+  .map, .hazard, .exposure
+    border-right: 1px #ccc dashed
+  .results, .loading
+    display: none
+    +clearfix
+    clear: both
+    border-top: 1px #ccc dashed
+    padding: 15px 0
+    .links
+      +clearfix
+      a
+        padding: 8px 0 8px 40px
+        float: left
+        margin: 0 20px 0 0
+      .ge
+        background: transparent url(../images/Google-Earth-32.png) no-repeat left center
+      
+  .loading
+    padding-left: 15px
+    padding-right: 15px
+    img
+      float: left
+      margin: 0 20px 0 0
+    p
+      float: left
+      margin: 0
+      font-size: 24px
+    
+    
+    
+    
+    

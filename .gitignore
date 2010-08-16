@@ -13,3 +13,4 @@ geodata/impact/*
 .dropbox
 .rbc
 .pyc
+app/stylesheets/.sass-cache
