@@ -7,7 +7,8 @@ require "fileutils"
 
 # usage = "websocket.rb [start | stop | restart]"
 
-riat_websocket_root_dir = File.open('/tmp/riat_websocket_root_dir.txt' ).read
+# riat_websocket_root_dir = File.open('/tmp/riat_websocket_root_dir.txt' ).read
+riat_websocket_root_dir = FileUtils.pwd
 
 EventMachine.run {
   # EventMachine::WebSocket.stop if ARGV[0] == "stop"
