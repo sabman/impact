@@ -24,16 +24,15 @@
     .hazard
       %h2 Select natural hazard
       %select
-        %option{:value => "earthquake", :selected => "selected"} Earthquake
-        %option{:value => "volcanic eruption"} Volcanic Eruption
-        %option{:value => "flood"} Flood
+        =Hazard.layernames.each do |h| 
+          %option{:value => "#{h}", :selected => "selected"}=h
       %p.help
         I am some helpful text about what natural hazard means
     .exposure
       %h2 Select exposure
       %select
-        %option{:value => "Population", :selected => "selected"} Population
-        %option{:value => "infrastructure"} Infrastructure
+        =Exposure.layernames.each do |e| 
+          %option{:value => "#{e}", :selected => "selected"}=e
       %p.help
         I am some helpful text about what exposure means
     .action
