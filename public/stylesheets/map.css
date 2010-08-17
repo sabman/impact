@@ -1,4 +1,4 @@
-#map-container { height: 400px; border: 1px solid #cccccc; margin: 0 10px 10px; min-width: 920px; }
+#map-container { height: 600px; border: 1px solid #cccccc; margin: 0 10px 10px; min-width: 920px; }
 
 .olControlMousePosition { background-color: #333333; padding: 2px; color: white; z-index: 2147483647; }
 

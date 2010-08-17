@@ -7,17 +7,22 @@ gem "pg"
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'em-websocket'
 gem 'daemons'
- 
-group :test do
-  gem "rspec-rails"
-  gem "capybara"
-  gem "cucumber-rails"
+gem 'httparty'
+
+group :test, :development do
+  gem 'rspec'
+  gem "rspec-rails", ">= 2.0.0.beta.19"
   gem "cucumber"
-  gem "machinist", '>= 2.0.0.beta1'  
-  gem 'faker'
+  gem "cucumber-rails"
 end
 
 group :development do
   gem "nifty-generators"
   gem "annotate"
+end
+
+group :test do
+  gem "capybara"
+  gem "machinist", '>= 2.0.0.beta1'  
+  gem 'faker'
 end
