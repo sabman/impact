@@ -6,6 +6,12 @@ describe Hazard do
         "href"=>"http://www.aifdr.org:8080/geoserver/rest/workspaces/hazard/coverages/earthquake_intensity_1hz10pc50.json",
         "name"=>"earthquake_intensity_1hz10pc50"})
   end
+  
+  it "should return all layernames as an array" do
+    Hazard.layernames.class.should == Array
+    Hazard.layernames.should include("earthquake_intensity_1hz10pc50")
+  end
+  
 end
 
 # == Schema Information

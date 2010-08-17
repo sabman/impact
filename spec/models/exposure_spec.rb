@@ -8,6 +8,7 @@ describe Exposure do
   end
   
   it "should return all layernames as an array" do
+    Exposure.layernames.class.should == Array
     Exposure.layernames.should include("population_2010")
   end
 
