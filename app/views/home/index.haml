@@ -1,7 +1,6 @@
 =content_for(:head) do
-  %script{:src => "http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&mkt=en-us"}
   / %script{:src => "http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=euzuro-openlayers"}
-  %script{:src => "http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&mkt=en-us"}
+  / %script{:src => "http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&mkt=en-us"}
   %script{:src => "http://maps.google.com/maps/api/js?sensor=false"}
   = javascript_include_tag 'home_index_map.js'
   = stylesheet_link_tag "scrollable", :cache => true
@@ -20,6 +19,8 @@
     .map
       %h2 Choose an area
       %p Set the map below to the bounding box you want
+      %p.bounding_box
+      
     .hazard
       %h2 Select natural hazard
       %select
@@ -49,7 +50,7 @@
         %a.ge{:href => '#'} View impact in Google Earth
 
 #map-container
-  #map
+
 
 // .container
 //   #projected_coords
@@ -64,6 +65,4 @@
 :javascript
   $(document).ready(function(){
     init_home_index_map();
-    // initialize scrollable
-  	$(".scrollable").scrollable();    
   });
