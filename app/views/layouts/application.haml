@@ -12,14 +12,14 @@
       
     = javascript_include_tag 'jquery.min',      :cache => true
     = javascript_include_tag 'application',  :cache => true
-    = javascript_include_tag 'openlayers/OpenLayers', :cache => true
-    = javascript_include_tag 'proj4js-combined', :cache => true
+    = javascript_include_tag 'openlayers/OpenLayers'
+    = javascript_include_tag 'proj4js-combined'
     %link{ :href=>"/javascripts/openlayers/theme/default/style.css", :media=>"screen", :rel=>"stylesheet", :type=>"text/css"}
 
     / install uniform for nicer forms
-    = javascript_include_tag "highcharts", :cache => true
-    = javascript_include_tag 'jquery.uniform.min', :cache => true
-    = stylesheet_link_tag '/javascripts/css/uniform.default.css', :cache => true
+    = javascript_include_tag "highcharts"
+    = javascript_include_tag 'jquery.uniform.min'
+    = stylesheet_link_tag '/javascripts/css/uniform.default.css'
 
     :javascript
       //$(function(){
