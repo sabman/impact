@@ -19,12 +19,14 @@
     / install uniform for nicer forms
     = javascript_include_tag "highcharts"
     = javascript_include_tag 'jquery.uniform.min'
+    = javascript_include_tag 'json'
+
     = stylesheet_link_tag '/javascripts/css/uniform.default.css'
 
-    :javascript
-      //$(function(){
-      //  $("input, text, submit, textarea, select, button").uniform();        
-      //});    
+    / setup websocket includes
+    = javascript_include_tag "web-socket-js/swfobject"
+    = javascript_include_tag "web-socket-js/FABridge"
+    = javascript_include_tag "web-socket-js/web_socket"
     
     = yield(:head)
   %body.bp
