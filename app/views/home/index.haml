@@ -16,6 +16,9 @@
       %h2 Choose an area
       %p Set the map below to the bounding box you want
       %p.bounding_box
+      %p
+        %span.width
+        %span.height
       
     .hazard
       %h2 Select natural hazard
@@ -40,6 +43,7 @@
     .results
       %h2 Impact results
       %p.timestamp Created at 15 July 2010, 1:31 PM
+      %p.impact_layername
       .links
         %a.download{:href => '#'} Download results
         %a.ge{:href => '#'} View impact in Google Earth
@@ -67,8 +71,9 @@
       // e.data contains received string.      
       results = JSON.parse(e.data);
       if (results.impact != null) {
-        $('.results p.timestamp').html(results.timestamp);
-        $('.results .links a.ge').attr('href', results.kml);
+        $('p.timestamp').html(results.impact.timestamp);
+        $('p.impact_layername').html(results.impact.impact_layername);
+        $('a.ge').attr('href', results.impact.kml);
         $('.loading').hide();    
         $('.results').show();
       };
@@ -88,6 +93,11 @@
   });
 
   $('button').click(function() {
+    if(Riat.olBounds().getWidth() > 10 )
+    {
+      alert("Extents are too big please zoom in");
+      return null
+    }
     $(this).addClass("disabled");
     $('.loading').show();
     Riat.hazard = $('.hazard select').val();

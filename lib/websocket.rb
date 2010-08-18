@@ -31,43 +31,29 @@ EventMachine.run {
           require "pp"; pp msg
           data = JSON.parse(msg)
           bbox = data["bounding_box"]
-          coordstr = bbox.join("_")
           timestamp = Time.now.strftime('%Y%m%d%H%M%S')          
-          impact_layername = "impact:fatalities_#{data["hazard"]}_#{timestamp}"
-          
+          impact_layername = "#{data["exposure"]}_#{data["hazard"]}_#{timestamp}"
+
           geoserver_url = YAML.load_file("#{riat_websocket_root_dir}/./config/geoserver.yml")['host']
-          cmd = "python #{riat_websocket_root_dir}/./lib/riat_python_api/run_impact_model.py \
-            bbox=[#{data["bounding_box"].join(",")}]  \
-            timestamp=#{timestamp}        \
-            hazard=#{data["hazard"]}      \
-            exposure=#{data["exposure"]}  \
-            impact_layername=#{impact_layername}"
+          cmd = "python #{riat_websocket_root_dir}/./lib/riat_python_api/run_impact_model.py \\
+            bbox=[#{data["bounding_box"].join(",")}] \\
+            timestamp=#{timestamp} \\
+            hazard_layer=#{data["hazard"]} \\
+            exposure_layer=#{data["exposure"]} \\
+            impact_layer=#{impact_layername}"
           puts "\n\n>>>>> #{cmd}"
           system cmd
           resp = { "impact" => {
-                "timestamp"     => timestamp,
-                "impact_layername" => impact_layername,
-                "bounding_box"  => bbox,
-                "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{impact_layername}&legend=true"},
-                "wms"           => "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                "wcs"           =>  "http://www.aifdr.org:8080/geoserver/wcs?service=wcs&version=1.0.0&bbox=...&coverage=#{impact_layername}&crs=...&resx=...&resy=..."
-                }
+                  "timestamp"     => timestamp,
+                  "impact_layername" => impact_layername,
+                  "bounding_box"  => bbox,
+                  "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{impact_layername}&legend=true"
+                }}
           ws.send resp.to_json
-          
-          # "
-          # <br/>
-          # <h3>New Impact Results</h3>
-          # <p>
-          #   <strong>Timestamp:</strong>     #{timestamp}<br/>
-          #   <strong>Layer name:</strong>     #{layername}<br/>
-          #   <strong>Bounding box::</strong> #{msg}<br/>
-          #   
-          #   <img border=\"0\" src='/images/Google-Earth-32.png'/>
-          #   <a href=\"http://#{geoserver_url}/geoserver/wms/kml?layers=#{layername}&legend=true\">
-          #     View impact in Google Earth
-          #   </a>            
-          # </p>"          
         end
       }
   end
 }
+
+# "wms"           => "http://www.aifdr.org:8080/geoserver/wms?service=wms"
+# "wcs"           =>  "http://www.aifdr.org:8080/geoserver/wcs?service=wcs&version=1.0.0&bbox=...&coverage=#{impact_layername}&crs=...&resx=...&resy=..."

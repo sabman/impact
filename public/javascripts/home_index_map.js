@@ -7,12 +7,16 @@ function mapEvent(event) {
       map.displayProjection      
     );
     console.log(bounds.toString());
+    console.log(Riat.olBounds().getWidth());
+    console.log(Riat.olBounds().getHeight());
     $('.bounding_box').html([
       Riat.precision(bounds.left),
       Riat.precision(bounds.bottom),
       Riat.precision(bounds.right), 
       Riat.precision(bounds.top)
     ].join(", "));
+    $('.width').html(Riat.precision(Riat.olBounds().getWidth()));
+    $('.height').html(Riat.precision(Riat.olBounds().getHeight()));
     Riat.bounding_box = bounds.toArray();
 }
 
