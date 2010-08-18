@@ -76,7 +76,7 @@ body.bp .first { margin-left: 0; padding-left: 0; }
 body.bp .last { margin-right: 0; padding-right: 0; }
 body.bp .top { margin-top: 0; padding-top: 0; }
 body.bp .bottom { margin-bottom: 0; padding-bottom: 0; }
-body.bp .showgrid { background: url('/images/grid.png?1282137130'); }
+body.bp .showgrid { background: url('/images/grid.png?1282139212'); }
 body.bp .error { padding: 0.8em; margin-bottom: 1em; border: 2px solid #dddddd; background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
 body.bp .error a { color: #8a1f11; }
 body.bp .notice { padding: 0.8em; margin-bottom: 1em; border: 2px solid #dddddd; background: #fff6bf; color: #514721; border-color: #ffd324; }
@@ -151,6 +151,7 @@ body.two-col .container { display: inline; float: left; margin-right: 0; width: 
 #builder .results .links, #builder .loading .links { display: block; }
 #builder .results .links a, #builder .loading .links a { padding: 8px 0 8px 40px; float: left; margin: 0 20px 0 0; }
 #builder .results .links .ge, #builder .loading .links .ge { background: transparent url(../images/Google-Earth-32.png) no-repeat left center; }
-#builder .loading { padding-left: 15px; padding-right: 15px; }
+#builder .loading { display: none; padding-left: 15px; padding-right: 15px; }
 #builder .loading img { float: left; margin: 0 20px 0 0; }
 #builder .loading p { float: left; margin: 0; font-size: 24px; }
+#builder .results { display: none; }
