@@ -16,6 +16,6 @@ class Coverage
     @base_url=base_url
     @resx="0.08"  # TODO get the metadata about the layer from DescribeCoverage Request
     @resy="-0.08" # TODO get the metadata about the layer from DescribeCoverage Request
-    @url="${base_url}?version=${version}&service=${service}&request=${request}&identifier=${identifier}&format=${format}&BoundingBox=${BoundingBox}&store=${store}&coverage=${coverage}&crs=${crs}&bbox=${bbox}&resx=${resx}&resy=${resy}"    
+    @url="${base_url}?version=${version}&service=${service}&request=${request}&identifier=${identifier}&format=${format}&BoundingBox=${BoundingBox}&store=${store}&coverage=${coverage}&crs=${crs}&bbox=${bbox}&resx=${resx}&resy=${resy}"
   end
 end
