@@ -17,30 +17,41 @@ EventMachine.run {
   EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 5000) do |ws|
       ws.onopen {
         puts "WebSocket connection open"
-        
+
         # publish message to the client
-        ws.send "Hello Client - Click submit to start the Impact analysis"
+        ws.send({"message" => "Click submit to start the Impact analysis"}.to_json)
       }
 
       ws.onclose { puts "Connection closed" }
       ws.onmessage { |msg|
         puts msg
         if msg == nil or msg == ''
-          ws.send "<div class='error'>Please provide bounding coordinates e.g: [106,-7.5,110,-3]</div>"
+          ws.send({"message" => "Please provide bounding coordinates e.g: [106,-7.5,110,-3]"}.to_json)
         else
-          bbox = msg.delete("[").delete("]").split(",").collect{|v| v.to_f }
+          require "pp"; pp msg
+          data = JSON.parse(msg)
+          bbox = data["bounding_box"]
           coordstr = bbox.join("_")
-          timestamp = Time.now.strftime('%Y%m%d%H%M%S')
+          timestamp = Time.now.strftime('%Y%m%d%H%M%S')          
+          impact_layername = "impact:fatalities_#{data["hazard"]}_#{timestamp}"
+          
           geoserver_url = YAML.load_file("#{riat_websocket_root_dir}/./config/geoserver.yml")['host']
-          system "python #{riat_websocket_root_dir}/./lib/riat_python_api/run_impact_model.py \
-            bbox=#{msg} \
-            timestamp=#{timestamp}"
-          layername = "impact:earthquake_fatalities_1hz10pc50_#{timestamp}"
+          cmd = "python #{riat_websocket_root_dir}/./lib/riat_python_api/run_impact_model.py \
+            bbox=[#{data["bounding_box"].join(",")}]  \
+            timestamp=#{timestamp}        \
+            hazard=#{data["hazard"]}      \
+            exposure=#{data["exposure"]}  \
+            impact_layername=#{impact_layername}"
+          puts "\n\n>>>>> #{cmd}"
+          system cmd
           resp = { "impact" => {
                 "timestamp"     => timestamp,
-                "layername"     => layername,
+                "impact_layername" => impact_layername,
                 "bounding_box"  => bbox,
-                "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{layername}&legend=true"}}
+                "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{impact_layername}&legend=true"},
+                "wms"           => "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+                "wcs"           =>  "http://www.aifdr.org:8080/geoserver/wcs?service=wcs&version=1.0.0&bbox=...&coverage=#{impact_layername}&crs=...&resx=...&resy=..."
+                }
           ws.send resp.to_json
           
           # "

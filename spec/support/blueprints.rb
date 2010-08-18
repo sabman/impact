@@ -11,3 +11,7 @@ require 'machinist/active_record'
 #Exposure.blueprint do
   # Attributes here
 #end
+
+# Boundary.blueprint do
+  # Attributes here
+# end
