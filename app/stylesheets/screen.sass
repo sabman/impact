@@ -27,7 +27,13 @@
 // when stylesheets are concatenated together.
 +blueprint-scaffolding("body.bp")
 
-@include font-face("FontinSansCyrillic", font-files("/fonts/FontinSans_Cyrillic_B_46b.otf", opentype))
+@font-face
+  font-family: 'BebasRegular'
+  src: url('../fonts/BEBAS___-webfont.eot')
+  src: local('☺'), url('../fonts/BEBAS___-webfont.woff') format('woff'), url('../fonts/BEBAS___-webfont.ttf') format('truetype'), url('../fonts/BEBAS___-webfont.svg#webfontnqJLEELI') format('svg')
+  font-weight: normal
+  font-style: normal
+
 
 body.bp
   +blueprint-typography(true)
@@ -46,10 +52,11 @@ body.bp
       h2
         +dark_inset
         color: #fff
-        font-family: FontinSansCyrillic
+        font-family: 'BebasRegular'
         text-align: center
-        font-size: 40px
-        letter-spacing: -.03em
+        font-size: 26px
+        letter-spacing: .2em
+        margin-bottom: 35px
 
   .pagehead
     position: relative
@@ -120,23 +127,41 @@ body.two-col
   font-size: 14px
   .map, .hazard, .exposure
     +column(6)
-    min-height: 130px
-    _height: 130px
     padding-top: 15px
     h2, p
       margin-right: 10px
+    p
+      margin-bottom: 8px
+  .current_bounds
+    border-top: 1px #ccc dashed
+    margin-top: 5px
+    margin-right: 10px
+    padding: 5px 0 15px
+    h3
+      font-size: 10px
+      letter-spacing: .25em
+      text-transform: uppercase
+      margin-top: 10px
+    .bounding_box, .height, .width
+      font-size: 12px
+  .toggle
+    +medium_button
+    +blue-button
+    margin: 0 0 10px
+    &:hover
+      +green_button
+    &.disabled
+      +light-grey-button
   .action
     +column(6, true)
-    min-height: 130px
-    _height: 120px
     padding-top: 15px
-    width: 220px
+    width: 210px
     button
       margin: 10px
       +large_button
-      +blue-button
+      +green-button
       &:hover
-        +green_button
+        +blue_button
       &.disabled
         +light-grey-button
   h2
@@ -146,7 +171,8 @@ body.two-col
     color: #777
     font-size: 12px
   select
-    border: 1px solid #ccc
+    border: 1px solid #9ac1d7
+    background: #d6effd
     color: #333
     display: block
     font: normal 14px / 1.5 "Helvetica Neue", Helvetica, Arial, sans-serif
@@ -154,17 +180,19 @@ body.two-col
     margin: 5px 0 15px
     height: 2.1em
     position: relative
+    width: 210px
     &:focus
       border-color: #000
   .map, .hazard, .exposure
     border-right: 1px #ccc dashed
 
   .results, .loading
-    display: none    
-    +clearfix
+    display: none
     clear: both
     border-top: 1px #ccc dashed
     padding: 15px 0
+    overflow: hidden
+    zoom: 1
     .links
       +clearfix
       a
@@ -174,8 +202,7 @@ body.two-col
       .ge
         background: transparent url(../images/Google-Earth-32.png) no-repeat left center
         
-  .loading
-    display: none        
+  .loading       
     padding-left: 15px
     padding-right: 15px
     img
@@ -185,6 +212,21 @@ body.two-col
       float: left
       margin: 0
       font-size: 24px
-
-  .results
-    display: none
+  
+.message
+  // display: none
+  border-top: 1px #ccc dashed
+  background: #ffc
+  overflow: hidden
+  padding: 10px 0 12px
+  zoom: 1
+  .container
+    padding: 0 3px 3px
+  .buttons
+    border-right: 1px #ccc dashed
+    display: inline
+    margin-right: 20px
+    padding-right: 20px
+    .done
+      +medium-button
+      +green-button

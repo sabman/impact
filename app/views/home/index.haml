@@ -12,13 +12,6 @@
 
 .container  
   #builder
-    .map
-      %h2 Choose an area
-      %p Set the map below to the bounding box you want
-      %p.bounding_box
-      %p
-        %span.width
-        %span.height      
     .hazard
       %h2 Select natural hazard
       %select
@@ -33,6 +26,14 @@
           %option{:value => "#{e}"}=e.humanize
       %p.help
         I am some helpful text about what exposure means
+    .map
+      %h2 Select an area
+      %a.toggle{:href => "#"} Turn on selection mode
+      .current_bounds
+        %h3 Current bounds
+        .bounding_box
+        .width
+        .height
     .action
       %button{:type => 'submit'} Run simulation
       // %button.disabled{:type => 'submit'} Run simulation
@@ -47,6 +48,13 @@
         %a.download{:href => '#'} Download results
         %a.ge{:href => '#'} View impact in Google Earth
 
+.message
+  .container
+    .buttons
+      %a.done{:href => "#"} Done
+      or
+      %a.cancel{:href => "#"} cancel      
+    Drag to select an area on the map below
 #map-container
 
 :javascript
