@@ -48,8 +48,11 @@ EventMachine.run {
                   "timestamp"     => timestamp,
                   "impact_layername" => impact_layername,
                   "bounding_box"  => bbox,
-                  "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{impact_layername}&legend=true"
+                  "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{impact_layername}&legend=true",
+                  "wms"           => "http://#{geoserver_url}/geoserver/wms"
+                  
                 }}
+          pp resp
           ws.send resp.to_json
         end
       }

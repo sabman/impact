@@ -1,0 +1,1 @@
+# DEST_GS_URL = YAML.load_file("#{Rails.root}/config/geoserver.yml")['host']

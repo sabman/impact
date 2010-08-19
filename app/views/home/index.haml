@@ -75,6 +75,18 @@
         $('a.ge').attr('href', results.impact.kml);
         $('.loading').hide();    
         $('.results').show();
+
+        var impact = new OpenLayers.Layer.WMS(results.impact.impact_layername.humanize(),
+                   results.impact.wms,
+                    {
+                      layers: "impact:"+results.impact.impact_layername,
+                      transparent: "true",
+                      format: "image/png"
+                    },
+                   {isBaseLayer: false, visibility: true, opacity: 0.5}
+                  ); 
+        map.addLayer(impact);
+        
       };
       console.log(e.data);
     };
