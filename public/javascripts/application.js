@@ -23,3 +23,18 @@ Riat.olBounds = (function() {
 }); 
 
 
+// var control = new OpenLayers.Control();
+// OpenLayers.Util.extend(control, {
+//     draw: function () {
+//         // this Handler.Box will intercept the shift-mousedown
+//         // before Control.MouseDefault gets to see it
+//         this.box = new OpenLayers.Handler.Box( control,
+//             {"done": this.notice},
+//             {keyMask: OpenLayers.Handler.MOD_SHIFT});
+//         this.box.activate();
+//     },
+// 
+//     notice: function (bounds) {
+//         console.log(bounds);
+//     }
+// });

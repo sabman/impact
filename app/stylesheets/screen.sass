@@ -145,11 +145,11 @@ body.two-col
     .bounding_box, .height, .width
       font-size: 12px
   .toggle
-    +medium_button
-    +blue-button
+    +medium_button    
+    +green_button
     margin: 0 0 10px
     &:hover
-      +green_button
+      +blue-button
     &.disabled
       +light-grey-button
   .action
@@ -201,20 +201,23 @@ body.two-col
         margin: 0 20px 0 0
       .ge
         background: transparent url(../images/Google-Earth-32.png) no-repeat left center
+      .download
+        background: transparent url(../images/download.png) no-repeat left center
+        
         
   .loading       
     padding-left: 15px
     padding-right: 15px
     img
       float: left
-      margin: 0 20px 0 0
+      margin: 0 6px 0 0
     p
       float: left
       margin: 0
-      font-size: 24px
+      font-size: 16px
   
 .message
-  // display: none
+  display: none
   border-top: 1px #ccc dashed
   background: #ffc
   overflow: hidden

@@ -4,6 +4,19 @@
   margin: 0 10px 10px
   min-width: 920px
 
+  .olControlLayerSwitcher .layersDiv
+    background-color: #3b3b37
+
+  .olControlLayerSwitcher
+    > div
+      display: none
+    div
+      &.minimizeDiv, &.maximizeDiv, &.layersDiv
+        display: block
+
+  .olControlBox
+    cursor: crosshair
+  
 .olControlMousePosition 
   background-color: #333
   padding: 2px
@@ -16,4 +29,5 @@
   background-color: wheat
   bottom: -20px
   font-size: 0.8em
-  
+
+

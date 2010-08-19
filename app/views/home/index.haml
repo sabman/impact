@@ -37,16 +37,15 @@
     .action
       %button{:type => 'submit'} Run simulation
       // %button.disabled{:type => 'submit'} Run simulation
-    .loading
-      %img{:src => '/images/spinner.gif'}
-      %p Running simulation
-    .results
-      %h2 Impact results
-      %p.timestamp Created at 15 July 2010, 1:31 PM
-      %p.impact_layername
-      .links
-        %a.download{:href => '#'} Download results
-        %a.ge{:href => '#'} View impact in Google Earth
+      .loading
+        %img{:src => '/images/spinner.gif'}
+        %p Running simulation
+      .results
+        %h2 Impact results
+        %p.impact_layername
+        .links
+          %a.download{:href => '#'} Download impact data
+          %a.ge{:href => '#'} View in Google Earth
 
 .message
   .container
@@ -83,7 +82,8 @@
         $('a.ge').attr('href', results.impact.kml);
         $('.loading').hide();    
         $('.results').show();
-
+        $(this).removeClass("disabled");
+        
         var impact = new OpenLayers.Layer.WMS(results.impact.impact_layername.humanize(),
                    results.impact.wms,
                     {
@@ -109,6 +109,8 @@
   $(document).ready(function(){
     init_home_index_map();
     init_websocket();
+    init_box_control();
+    
   });
 
   $('button').click(function() {
@@ -127,3 +129,15 @@
     ws.send(encoded_riat);
   })
 
+  $('a.toggle').toggle(function() {
+    $('.message').show("fast");
+    boxControl.box.activate();
+    $(this).addClass("disabled");    
+    $('a.toggle').html("Turn off selection mode");
+
+  }, function() {
+    $('.message').hide("fast");
+    boxControl.box.deactivate();
+    $(this).removeClass("disabled");    
+    $('a.toggle').html("Turn on selection mode");
+  });

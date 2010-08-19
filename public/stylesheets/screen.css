@@ -139,8 +139,8 @@ body.two-col .container { display: inline; float: left; margin-right: 0; width: 
 #builder .current_bounds { border-top: 1px #cccccc dashed; margin-top: 5px; margin-right: 10px; padding: 5px 0 15px; }
 #builder .current_bounds h3 { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; margin-top: 10px; }
 #builder .current_bounds .bounding_box, #builder .current_bounds .height, #builder .current_bounds .width { font-size: 12px; }
-#builder .toggle { color: white; cursor: pointer; display: inline-block; font-family: Helvetica, "HelveticaNeue", Arial, sans-serif; line-height: 1; margin-top: 2px; position: relative; text-decoration: none; text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px; -webkit-border-radius: 6px; -moz-border-radius: 6px; padding: 9px 14px 9px; font-family: Helvetica, "HelveticaNeue", Arial, sans-serif; font-size: 14px; font-weight: bold; -moz-box-shadow: 0 2px 5px #999999; -webkit-box-shadow: 0 2px 5px #999999; border: 1px solid #222222; background: #3583cf; background: -webkit-gradient(linear, left top, left bottom, from(#629ed9), to(#3583cf)); border-color: #bbe2f8; margin: 0 0 10px; }
-#builder .toggle:hover { background: #6ca520; background: -webkit-gradient(linear, left top, left bottom, from(#90bb58), to(#6ca520)); border-color: #dcf1bf; }
+#builder .toggle { color: white; cursor: pointer; display: inline-block; font-family: Helvetica, "HelveticaNeue", Arial, sans-serif; line-height: 1; margin-top: 2px; position: relative; text-decoration: none; text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px; -webkit-border-radius: 6px; -moz-border-radius: 6px; padding: 9px 14px 9px; font-family: Helvetica, "HelveticaNeue", Arial, sans-serif; font-size: 14px; font-weight: bold; -moz-box-shadow: 0 2px 5px #999999; -webkit-box-shadow: 0 2px 5px #999999; border: 1px solid #222222; background: #6ca520; background: -webkit-gradient(linear, left top, left bottom, from(#90bb58), to(#6ca520)); border-color: #dcf1bf; margin: 0 0 10px; }
+#builder .toggle:hover { background: #3583cf; background: -webkit-gradient(linear, left top, left bottom, from(#629ed9), to(#3583cf)); border-color: #bbe2f8; }
 #builder .toggle.disabled { background: #cccccc; background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#aaaaaa)); border-color: #efefef; -moz-box-shadow: 0 2px 5px #cccccc; -webkit-box-shadow: 0 2px 5px #cccccc; }
 #builder .action { display: inline; float: left; margin-right: 0; width: 222.5px; padding-top: 15px; width: 210px; }
 * html #builder .action { overflow-x: hidden; }
@@ -157,11 +157,12 @@ body.two-col .container { display: inline; float: left; margin-right: 0; width: 
 #builder .results .links, #builder .loading .links { display: block; }
 #builder .results .links a, #builder .loading .links a { padding: 8px 0 8px 40px; float: left; margin: 0 20px 0 0; }
 #builder .results .links .ge, #builder .loading .links .ge { background: transparent url(../images/Google-Earth-32.png) no-repeat left center; }
+#builder .results .links .download, #builder .loading .links .download { background: transparent url(../images/download.png) no-repeat left center; }
 #builder .loading { padding-left: 15px; padding-right: 15px; }
-#builder .loading img { float: left; margin: 0 20px 0 0; }
-#builder .loading p { float: left; margin: 0; font-size: 24px; }
+#builder .loading img { float: left; margin: 0 6px 0 0; }
+#builder .loading p { float: left; margin: 0; font-size: 16px; }
 
-.message { border-top: 1px #cccccc dashed; background: #ffffcc; overflow: hidden; padding: 10px 0 12px; zoom: 1; }
+.message { display: none; border-top: 1px #cccccc dashed; background: #ffffcc; overflow: hidden; padding: 10px 0 12px; zoom: 1; }
 .message .container { padding: 0 3px 3px; }
 .message .buttons { border-right: 1px #cccccc dashed; display: inline; margin-right: 20px; padding-right: 20px; }
 .message .buttons .done { color: white; cursor: pointer; display: inline-block; font-family: Helvetica, "HelveticaNeue", Arial, sans-serif; line-height: 1; margin-top: 2px; position: relative; text-decoration: none; text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px; -webkit-border-radius: 6px; -moz-border-radius: 6px; padding: 9px 14px 9px; font-family: Helvetica, "HelveticaNeue", Arial, sans-serif; font-size: 14px; font-weight: bold; -moz-box-shadow: 0 2px 5px #999999; -webkit-box-shadow: 0 2px 5px #999999; border: 1px solid #222222; background: #6ca520; background: -webkit-gradient(linear, left top, left bottom, from(#90bb58), to(#6ca520)); border-color: #dcf1bf; }

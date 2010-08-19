@@ -1,4 +1,8 @@
 #map-container { height: 600px; border: 1px solid #cccccc; margin: 0 10px 10px; min-width: 920px; }
+#map-container .olControlLayerSwitcher .layersDiv { background-color: #3b3b37; }
+#map-container .olControlLayerSwitcher > div { display: none; }
+#map-container .olControlLayerSwitcher div.minimizeDiv, #map-container .olControlLayerSwitcher div.maximizeDiv, #map-container .olControlLayerSwitcher div.layersDiv { display: block; }
+#map-container .olControlBox { cursor: crosshair; }
 
 .olControlMousePosition { background-color: #333333; padding: 2px; color: white; z-index: 2147483647; }
 

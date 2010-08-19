@@ -96,58 +96,62 @@ var ol_wms = new OpenLayers.Layer.WMS("OpenLayers WMS",
 // );
 
 
-// var IDN2 = new OpenLayers.Layer.WMS("IDN 2",
-//            "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-//             {
-//               layers: "test:gadm_IDN_2",
-//               transparent: "true",
-//               format: "image/png"
-//             },
-//            {isBaseLayer: false, visibility: false, opacity: 0.5}
-//           );             
-
-// 
-// var population = new OpenLayers.Layer.WMS("Population",
-//          "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-//          {
-//              layers: "test:gazette",
-//              transparent: "true",
-//              format: "image/png"
-//          },
-//          {isBaseLayer: false, visibility: false, opacity: 0.6}
-//          );    
-//    
-							  
-// var shakemap = new OpenLayers.Layer.WMS("Shakemap",
-//          "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-//          {
-//              layers: "test:shakemap_3009009",
-//              transparent: "true",
-//              format: "image/png"
-//          },
-//          {isBaseLayer: false, visibility: false, opacity: 0.6}
-//          );              
+var earthquake_intensity_1hz10pc50 = new OpenLayers.Layer.WMS("earthquake_intensity_1hz10pc5",
+                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+                        {
+                            layers: "hazard:earthquake_intensity_1hz10pc50",
+                            transparent: "true",
+                            format: "image/png"
+                        },
+                        {isBaseLayer: false, visibility: false, opacity: 0.8}
+                        );
 
 
-// var eq_hazmap = new OpenLayers.Layer.WMS("Earthquake hazard map",
-//          "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-//          {
-//              layers: "test:mmi_intensity_10pc50",
-//              transparent: "true",
-//              format: "image/png"
-//          },
-//          {isBaseLayer: false, visibility: true, opacity: 0.8}
-//          );              
+var shakemap_padang_20090930 = new OpenLayers.Layer.WMS("shakemap_padang_20090930",
+                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+                        {
+                            layers: "hazard:shakemap_padang_20090930",
+                            transparent: "true",
+                            format: "image/png"
+                        },
+                        {isBaseLayer: false, visibility: false, opacity: 0.8}
+                        );
+
+
+var lembang_scenario_intensity = new OpenLayers.Layer.WMS("lembang_scenario_intensity",
+                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+                        {
+                            layers: "hazard:lembang_scenario_intensity",
+                            transparent: "true",
+                            format: "image/png"
+                        },
+                        {isBaseLayer: false, visibility: false, opacity: 0.8}
+                        );
+
+
+var population_2010 = new OpenLayers.Layer.WMS("population_2010",
+                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+                        {
+                            layers: "exposure:population_2010",
+                            transparent: "true",
+                            format: "image/png"
+                        },
+                        {isBaseLayer: false, visibility: false, opacity: 0.8}
+                        );
 
 
 // Map extent for Indonesia in Spherical Mercator coordinates
 var initial_boundary = new OpenLayers.Bounds(9062374, -1374643, 15891564, 1130045);
 
 // Add the created layers to the map
-map.addLayers([gphy, gsat, ghyb, gmap, ol_wms]);
+map.addLayers([gphy, gsat, ghyb, gmap, ol_wms, 
+    earthquake_intensity_1hz10pc50, 
+    shakemap_padang_20090930, 
+    lembang_scenario_intensity, 
+    population_2010]);
 
 // Enable switching of layers	  
-map.addControl(new OpenLayers.Control.LayerSwitcher());
+map.addControl(new OpenLayers.Control.LayerSwitcher({displayClass: 'olControlLayerSwitcher'}));
 
 // Show coordinates (as lat and lon in WGS84) under mouse pointer	  
 mp = new OpenLayers.Control.MousePosition({div: $('#projected_coords')[0]});
@@ -161,4 +165,25 @@ map.addControl(mp);
 // Zoom to initial view of Indonesia	  
 map.zoomToExtent(initial_boundary);      
 
+}
+
+var boxControl;
+function init_box_control() {
+  boxControl = new OpenLayers.Control();
+  OpenLayers.Util.extend(boxControl, {
+     draw: function() {
+       this.box = new OpenLayers.Handler.RegularPolygon(boxControl,
+         {"done": this.notice}, {sides:4, irregular:true, persist:true});
+       this.box.deactivate();
+     },
+
+     notice: function(geom) {
+       console.log(bounds);
+     },
+          
+     displayClass: 'olControlBox'
+     
+  });
+
+  map.addControl(boxControl);
 }
