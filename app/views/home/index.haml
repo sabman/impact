@@ -6,7 +6,7 @@
 
 .pagehead
   %p
-    Risk In A Box allows rapid impact assessments of natural hazards . Select the hazard and the exposure maps to compute map of estimated fatalities.
+    Select the hazard and the exposure maps to compute map of estimated fatalities.
 
 .container  
   #builder
@@ -17,7 +17,7 @@
           =Hazard.layernames.each do |hz| 
             %option{:value => "#{hz}"}=hz.humanize
       %p.help
-        Select map representing hazard level. This can for example be ground shaking intensity in case of earthquakes, ash thickness in case of volcanic eruptions or water depth in case of flooding
+        Select map representing hazard level
     .exposure
       %h2 Select exposure
       %select
@@ -25,7 +25,7 @@
           =Exposure.layernames.each do |e| 
             %option{:value => "#{e}"}=e.humanize
       %p.help
-        Select map of elements exposed to the natural hazard. This can for example be population count, total floor area of building or number of houses
+        Select map of elements exposed to the natural hazard
     .map
       %h2 Select an area
       %a.toggle{:href => "#"} Turn on selection mode
@@ -37,7 +37,7 @@
         %p Running simulation
       .results
         / %h2 Impact results
-        %p.impact_layername
+        / %p.impact_layername
         .links
           %a.download{:href => '#'} Download impact data
           %a.ge{:href => '#'} View in Google Earth

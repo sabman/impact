@@ -152,7 +152,7 @@ body.two-col .container { display: inline; float: left; margin-right: 0; width: 
 #builder select { border: 1px solid #9ac1d7; background: #d6effd; color: #333333; display: block; font: normal 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif; padding: 5px 3px 5px; margin: 5px 0 15px; height: 2.1em; position: relative; width: 210px; }
 #builder select:focus { border-color: black; }
 #builder .map, #builder .hazard, #builder .exposure { border-right: 1px #cccccc dashed; }
-#builder .results, #builder .loading { display: none; clear: both; border-top: 1px #cccccc dashed; padding: 15px 0; overflow: hidden; zoom: 1; }
+#builder .results, #builder .loading { display: none; clear: both; border-top: 1px #cccccc dashed; padding: 5px 0; overflow: hidden; zoom: 1; }
 #builder .results .links, #builder .loading .links { overflow: hidden; display: inline-block; }
 #builder .results .links, #builder .loading .links { display: block; }
 #builder .results .links a, #builder .loading .links a { padding: 8px 0 8px 40px; float: left; margin: 0 20px 0 0; }

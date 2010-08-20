@@ -70,7 +70,7 @@ var ol_wms = new OpenLayers.Layer.WMS("OpenLayers WMS",
   {layers: "basic"});
 
 
-boxLayer = new OpenLayers.Layer.Vector("Bounding Box", {visibility: true});
+boxLayer = new OpenLayers.Layer.Vector("Bounding Box", {displayInLayerSwitcher: false, visibility: true});
 
 var earthquake_intensity_1hz10pc50 = new OpenLayers.Layer.WMS("earthquake_intensity_1hz10pc5",
                         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
