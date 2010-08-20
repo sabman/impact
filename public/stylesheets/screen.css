@@ -91,7 +91,7 @@ body.bp #header { margin-bottom: 10px; background: #aa0000; }
 body.bp #header #header_content { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; padding-top: 16px; }
 body.bp #header #header_content { display: block; }
 body.bp #header #header_content h2 { text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px; color: white; font-family: "BebasRegular"; text-align: center; font-size: 26px; letter-spacing: 0.2em; margin-bottom: 35px; }
-body.bp .pagehead { position: relative; margin-top: -30px; margin-left: auto; margin-right: auto; width: 920px; padding: 20px 25px 0 25px; background: url(/images/pagehead/background-white.png) 0 0 no-repeat; }
+body.bp .pagehead { position: relative; margin-top: -30px; margin-left: auto; margin-right: auto; width: 920px; padding: 20px 25px 0 25px; background: url(/images/pagehead/background-white.png) 0 0 no-repeat; text-align: center; font-weight: bold; }
 body.bp .container { width: 920px; margin: 0 auto; overflow: hidden; display: inline-block; }
 body.bp .container { display: block; }
 body.bp #footer { padding: 10px; font-size: 0.8em; background: none repeat scroll 0 0 #aa0000; border-top: 3px solid #cccccc; clear: both; color: #888888; margin-top: 30px; padding: 20px 0; }
