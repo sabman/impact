@@ -84,8 +84,7 @@
         $('a.download').attr('href', results.impact.download_link);
         $('.loading').hide();    
         $('.results').show();
-        $('button').removeClass("disabled");
-        
+        $('button').removeClass("disabled");        
         var impact = new OpenLayers.Layer.WMS(results.impact.impact_layername.humanize(),
                    results.impact.wms,
                     {
@@ -95,8 +94,7 @@
                     },
                    {isBaseLayer: false, visibility: true, opacity: 0.5}
                   ); 
-        map.addLayer(impact);
-        
+        map.addLayer(impact);        
       };
       console.log(e.data);
     };
@@ -122,6 +120,7 @@
       return null
     }
     $(this).addClass("disabled");
+    $('.results').hide();    
     $('.loading').show();
     Riat.hazard = $('.hazard select').val();
     Riat.exposure = $('.exposure select').val();
