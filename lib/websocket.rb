@@ -44,13 +44,20 @@ EventMachine.run {
             impact_layer=#{impact_layername}"
           puts "\n\n>>>>> #{cmd}"
           system cmd
+          cmd = "python #{riat_websocket_root_dir}/./lib/riat_python_api/get_download_url.py \'http://#{geoserver_url}/geoserver/wcs\' \'impact:#{impact_layername}\'"
+          puts "\n\n>>>>> #{cmd}"
+          # %x{python "#{riat_websocket_root_dir}/./lib/riat_python_api/get_download_url.py" "\'http://#{geoserver_url}/geoserver/wcs\'" "\'impact:#{impact_layername}\'"}
+          %x{"#{cmd}"}
+          
+          download_link = STDIN.read(1)
+          puts download_link
           resp = { "impact" => {
                   "timestamp"     => timestamp,
                   "impact_layername" => impact_layername,
                   "bounding_box"  => bbox,
                   "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{impact_layername}&legend=true",
-                  "wms"           => "http://#{geoserver_url}/geoserver/wms"
-                  
+                  "wms"           => "http://#{geoserver_url}/geoserver/wms",
+                  "download_link" => download_link
                 }}
           pp resp
           ws.send resp.to_json

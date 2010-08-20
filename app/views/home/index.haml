@@ -6,34 +6,29 @@
 
 .pagehead
   %p
-    The Hazard Impact Tool allows rapid impact assessments at the district level for
-    a range of hazards and scenarios. Select the hazard and the scenario and the tool
-    will provide estimates of people impacted in each district.
+    Risk In A Box allows rapid impact assessments of natural hazards . Select the hazard and the exposure maps to compute map of estimated fatalities.
 
 .container  
   #builder
     .hazard
       %h2 Select natural hazard
       %select
-        =Hazard.layernames.each do |hz| 
-          %option{:value => "#{hz}"}=hz.humanize
+        = unless Hazard.layernames.nil?
+          =Hazard.layernames.each do |hz| 
+            %option{:value => "#{hz}"}=hz.humanize
       %p.help
-        I am some helpful text about what natural hazard means
+        Select map representing hazard level. This can for example be ground shaking intensity in case of earthquakes, ash thickness in case of volcanic eruptions or water depth in case of flooding
     .exposure
       %h2 Select exposure
       %select
-        =Exposure.layernames.each do |e| 
-          %option{:value => "#{e}"}=e.humanize
+        = unless Exposure.layernames.nil?
+          =Exposure.layernames.each do |e| 
+            %option{:value => "#{e}"}=e.humanize
       %p.help
-        I am some helpful text about what exposure means
+        Select map of elements exposed to the natural hazard. This can for example be population count, total floor area of building or number of houses
     .map
       %h2 Select an area
       %a.toggle{:href => "#"} Turn on selection mode
-      .current_bounds
-        %h3 Current bounds
-        .bounding_box
-        .width
-        .height
     .action
       %button{:type => 'submit'} Run simulation
       // %button.disabled{:type => 'submit'} Run simulation
@@ -41,21 +36,27 @@
         %img{:src => '/images/spinner.gif'}
         %p Running simulation
       .results
-        %h2 Impact results
+        / %h2 Impact results
         %p.impact_layername
         .links
           %a.download{:href => '#'} Download impact data
           %a.ge{:href => '#'} View in Google Earth
 
-.message
-  .container
-    .buttons
-      %a.done{:href => "#"} Done
-      or
-      %a.cancel{:href => "#"} cancel      
-    Drag to select an area on the map below
+/ .message
+/   .container
+/     .buttons
+/       %a.done{:href => "#"} Done
+/       or
+/       %a.cancel{:href => "#"} cancel      
+/     Drag to select an area on the map below
 #map-container
-
+#statusbar
+  .container
+    .map
+      .current_bounds
+        Current bounds 
+        %span.bounding_box 
+       
 :javascript
 
   // Set URL of your WebSocketMain.swf here:
@@ -77,12 +78,13 @@
       // e.data contains received string.      
       results = JSON.parse(e.data);
       if (results.impact != null) {
-        $('p.timestamp').html(results.impact.timestamp);
-        $('p.impact_layername').html(results.impact.impact_layername);
+        // $('p.timestamp').html(results.impact.timestamp);
+        // $('p.impact_layername').html(results.impact.impact_layername);
         $('a.ge').attr('href', results.impact.kml);
+        $('a.download').attr('href', results.impact.download_link);
         $('.loading').hide();    
         $('.results').show();
-        $(this).removeClass("disabled");
+        $('button').removeClass("disabled");
         
         var impact = new OpenLayers.Layer.WMS(results.impact.impact_layername.humanize(),
                    results.impact.wms,
@@ -130,14 +132,13 @@
   })
 
   $('a.toggle').toggle(function() {
-    $('.message').show("fast");
-    boxControl.box.activate();
+    // $('.message').show("fast");
     $(this).addClass("disabled");    
     $('a.toggle').html("Turn off selection mode");
-
+    boxControl.box.activate();
   }, function() {
-    $('.message').hide("fast");
-    boxControl.box.deactivate();
+    // $('.message').hide("fast");
     $(this).removeClass("disabled");    
     $('a.toggle').html("Turn on selection mode");
+    boxControl.box.deactivate();
   });
