@@ -2,7 +2,7 @@
 %html
   %head
     %title
-      = yield(:title) || APPLICATION_TITLE
+      = yield(:title) || "Risk In A Box"
     = csrf_meta_tag
     = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'map.css',    :media => 'screen, projection'
@@ -18,9 +18,10 @@
 
     / install uniform for nicer forms
     = javascript_include_tag "highcharts"
-    = javascript_include_tag 'jquery.uniform.min'
-    = javascript_include_tag 'json'
+    = javascript_include_tag 'json2'
     = javascript_include_tag 'inflection'
+    = javascript_include_tag 'jquery.base64'
+    / = javascript_include_tag 'https://getfirebug.com/firebug-lite.js'
     = stylesheet_link_tag '/javascripts/css/uniform.default.css'
 
     / setup websocket includes
@@ -33,7 +34,7 @@
     #header
       #header_content
         %h2 
-          Rapid Impact Assessment Tool
+          Risk In A Box
           
     = yield
 

@@ -1,1 +1,1 @@
-APPLICATION_TITLE = "Disaster Impact Forecast"
+APPLICATION_TITLE = "Risk In A Box"

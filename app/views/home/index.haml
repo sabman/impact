@@ -6,50 +6,59 @@
 
 .pagehead
   %p
-    The Hazard Impact Tool allows rapid impact assessments at the district level for
-    a range of hazards and scenarios. Select the hazard and the scenario and the tool
-    will provide estimates of people impacted in each district.
+    Select the hazard and the exposure maps to compute map of estimated fatalities
 
 .container  
   #builder
-    .map
-      %h2 Choose an area
-      %p Set the map below to the bounding box you want
-      %p.bounding_box
-      %p
-        %span.width
-        %span.height
-      
     .hazard
       %h2 Select natural hazard
-      %select
-        =Hazard.layernames.each do |hz| 
-          %option{:value => "#{hz}"}=hz.humanize
+      %select.hazard_layers
+        = unless Hazard.layernames.nil?
+          =Hazard.layernames.each do |hz| 
+            %option{:value => "#{hz}"}=hz.humanize
       %p.help
-        I am some helpful text about what natural hazard means
+        Select map representing hazard level
     .exposure
       %h2 Select exposure
-      %select
-        =Exposure.layernames.each do |e| 
-          %option{:value => "#{e}"}=e.humanize
+      %select.exposure_layers
+        = unless Exposure.layernames.nil?
+          =Exposure.layernames.each do |e| 
+            %option{:value => "#{e}"}=e.humanize
       %p.help
-        I am some helpful text about what exposure means
+        Select map of elements exposed to the natural hazard
+    .map
+      %h2 Select an area
+      %a.toggle{:href => "#"} Turn on selection mode
     .action
       %button{:type => 'submit'} Run simulation
       // %button.disabled{:type => 'submit'} Run simulation
-    .loading
-      %img{:src => '/images/spinner.gif'}
-      %p Running simulation
-    .results
-      %h2 Impact results
-      %p.timestamp Created at 15 July 2010, 1:31 PM
-      %p.impact_layername
-      .links
-        %a.download{:href => '#'} Download results
-        %a.ge{:href => '#'} View impact in Google Earth
+      .loading
+        %img{:src => '/images/spinner.gif'}
+        %p Running simulation
+      .results
+        / %h2 Impact results
+        / %p.impact_layername
+        .links
+          %a.download{:href => '#'} Download impact data
+          %a.ge{:href => '#'} View in Google Earth
+
+/ .message
+/   .container
+/     .buttons
+/       %a.done{:href => "#"} Done
+/       or
+/       %a.cancel{:href => "#"} cancel      
+/     Drag to select an area on the map below
 
 #map-container
-
+#map-statusbar
+  .container
+    / .toggle_fullscreen
+    /   Full Screen Map    
+    .current_bounds
+      Current bounds 
+      %span.bounding_box 
+       
 :javascript
 
   // Set URL of your WebSocketMain.swf here:
@@ -71,12 +80,13 @@
       // e.data contains received string.      
       results = JSON.parse(e.data);
       if (results.impact != null) {
-        $('p.timestamp').html(results.impact.timestamp);
-        $('p.impact_layername').html(results.impact.impact_layername);
+        // $('p.timestamp').html(results.impact.timestamp);
+        // $('p.impact_layername').html(results.impact.impact_layername);
         $('a.ge').attr('href', results.impact.kml);
+        $('a.download').attr('href', results.impact.download_link);
         $('.loading').hide();    
         $('.results').show();
-
+        $('button').removeClass("disabled");        
         var impact = new OpenLayers.Layer.WMS(results.impact.impact_layername.humanize(),
                    results.impact.wms,
                     {
@@ -86,8 +96,7 @@
                     },
                    {isBaseLayer: false, visibility: true, opacity: 0.5}
                   ); 
-        map.addLayer(impact);
-        
+        map.addLayer(impact);        
       };
       console.log(e.data);
     };
@@ -102,6 +111,8 @@
   $(document).ready(function(){
     init_home_index_map();
     init_websocket();
+    init_box_control();
+    
   });
 
   $('button').click(function() {
@@ -111,6 +122,7 @@
       return null
     }
     $(this).addClass("disabled");
+    $('.results').hide();    
     $('.loading').show();
     Riat.hazard = $('.hazard select').val();
     Riat.exposure = $('.exposure select').val();
@@ -120,3 +132,32 @@
     ws.send(encoded_riat);
   })
 
+  $('a.toggle').toggle(function() {
+    // $('.message').show("fast");
+    $(this).addClass("disabled");    
+    $('a.toggle').html("Turn off selection mode");
+    boxControl.box.activate();
+  }, function() {
+    // $('.message').hide("fast");
+    $(this).removeClass("disabled");    
+    $('a.toggle').html("Turn on selection mode");
+    boxControl.box.deactivate();
+  });
+  
+  $('select.hazard_layers').change(function () {
+    re = new RegExp($(this).val()+"(.*)", "i")
+    console.log(re);    
+    l = map.getLayersByName(re)[0]
+    l.setVisibility(false);
+    l.setVisibility(true);
+  });
+  
+  $('select.exposure_layers').change(function () {
+    console.log($(this).val());
+    re = new RegExp($(this).val()+".*")
+    console.log(re);    
+    l = map.getLayersByName(re)[0]
+    l.setVisibility(false);
+    l.setVisibility(true);
+  });
+  

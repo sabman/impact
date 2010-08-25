@@ -4,7 +4,26 @@
   margin: 0 10px 10px
   min-width: 920px
 
+  .olControlLayerSwitcher .layersDiv
+    background-color: #3b3b37
+
+  .olControlLayerSwitcher
+    > div
+      display: none
+    div
+      &.minimizeDiv, &.maximizeDiv, &.layersDiv
+        display: block
+
+  .olControlBox
+    cursor: crosshair
+  
 .olControlMousePosition 
+  background-color: #333
+  padding: 2px
+  color: white
+  z-index: 2147483647
+
+.olControlBoundingBox 
   background-color: #333
   padding: 2px
   color: white
@@ -16,4 +35,14 @@
   background-color: wheat
   bottom: -20px
   font-size: 0.8em
-  
+
+
+#map-statusbar
+  .current_bounds
+    border-bottom: 1px #ccc dashed
+    margin-top: 5px
+    margin-right: 10px
+    padding: 5px 0 15px
+    font-size: 10px
+    letter-spacing: .25em
+    text-transform: uppercase

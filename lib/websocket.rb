@@ -35,6 +35,8 @@ EventMachine.run {
           timestamp = Time.now.strftime('%Y%m%d%H%M%S')          
           impact_layername = "#{data["exposure"]}_#{data["hazard"]}_#{timestamp}"
 
+          #  ========================== run the model ==========================
+          
           geoserver_url = YAML.load_file("#{riat_websocket_root_dir}/./config/geoserver.yml")['host']
           cmd = "python #{riat_websocket_root_dir}/./lib/riat_python_api/run_impact_model.py \\
             bbox=[#{data["bounding_box"].join(",")}] \\
@@ -44,13 +46,22 @@ EventMachine.run {
             impact_layer=#{impact_layername}"
           puts "\n\n>>>>> #{cmd}"
           system cmd
+          
+          #  ========================== get download wcs link ==========================
+          wcs_url_txt_file = "#{riat_websocket_root_dir}/./lib/riat_python_api/wcs_url.txt"
+          cmd = "python #{riat_websocket_root_dir}/./lib/riat_python_api/get_download_url.py \'http://#{geoserver_url}/geoserver/wcs\' \'impact:#{impact_layername}\'"
+          puts "\n\n>>>>> #{cmd}"
+          system(cmd)
+          download_link = File.open(wcs_url_txt_file, 'r').read
+
+          #  ========================== setup the repsonse to the browser ==========================          
           resp = { "impact" => {
                   "timestamp"     => timestamp,
                   "impact_layername" => impact_layername,
                   "bounding_box"  => bbox,
                   "kml"           => "http://#{geoserver_url}/geoserver/wms/kml?layers=#{impact_layername}&legend=true",
-                  "wms"           => "http://#{geoserver_url}/geoserver/wms"
-                  
+                  "wms"           => "http://#{geoserver_url}/geoserver/wms",
+                  "download_link" => download_link
                 }}
           pp resp
           ws.send resp.to_json

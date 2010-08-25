@@ -1,5 +1,13 @@
 #map-container { height: 600px; border: 1px solid #cccccc; margin: 0 10px 10px; min-width: 920px; }
+#map-container .olControlLayerSwitcher .layersDiv { background-color: #3b3b37; }
+#map-container .olControlLayerSwitcher > div { display: none; }
+#map-container .olControlLayerSwitcher div.minimizeDiv, #map-container .olControlLayerSwitcher div.maximizeDiv, #map-container .olControlLayerSwitcher div.layersDiv { display: block; }
+#map-container .olControlBox { cursor: crosshair; }
 
 .olControlMousePosition { background-color: #333333; padding: 2px; color: white; z-index: 2147483647; }
 
+.olControlBoundingBox { background-color: #333333; padding: 2px; color: white; z-index: 2147483647; }
+
 #projected_coords { float: right; padding: 2px; background-color: wheat; bottom: -20px; font-size: 0.8em; }
+
+#map-statusbar .current_bounds { border-bottom: 1px #cccccc dashed; margin-top: 5px; margin-right: 10px; padding: 5px 0 15px; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; }
