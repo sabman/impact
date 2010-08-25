@@ -36,6 +36,8 @@
 
 
 body.bp
+  height: 100%
+  width: 100%
   +blueprint-typography(true)
   +blueprint-utilities
   +blueprint-debug
@@ -43,6 +45,8 @@ body.bp
   // Remove the scaffolding when you're ready to start doing visual design.
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
   -webkit-font-smoothing: antialiased
+  height: 100%
+  width: 100%  
   #header
     margin-bottom: 10px
     background: #a00
@@ -241,3 +245,13 @@ body.two-col
     .done
       +medium-button
       +green-button
+
+// .fullscreen
+//   display: block
+//   // set the div in the top-left corner of the screen
+//   position: absolute
+//   top: 0
+//   left: 0
+//   // set the width and height to 100% of the screen
+//   width: 100%
+//   height: 100%

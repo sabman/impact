@@ -10,4 +10,4 @@
 
 #projected_coords { float: right; padding: 2px; background-color: wheat; bottom: -20px; font-size: 0.8em; }
 
-#statusbar .current_bounds { border-bottom: 1px #cccccc dashed; margin-top: 5px; margin-right: 10px; padding: 5px 0 15px; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; }
+#map-statusbar .current_bounds { border-bottom: 1px #cccccc dashed; margin-top: 5px; margin-right: 10px; padding: 5px 0 15px; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; }

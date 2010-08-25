@@ -12,7 +12,7 @@
   #builder
     .hazard
       %h2 Select natural hazard
-      %select
+      %select.hazard_layers
         = unless Hazard.layernames.nil?
           =Hazard.layernames.each do |hz| 
             %option{:value => "#{hz}"}=hz.humanize
@@ -20,7 +20,7 @@
         Select map representing hazard level
     .exposure
       %h2 Select exposure
-      %select
+      %select.exposure_layers
         = unless Exposure.layernames.nil?
           =Exposure.layernames.each do |e| 
             %option{:value => "#{e}"}=e.humanize
@@ -49,13 +49,15 @@
 /       or
 /       %a.cancel{:href => "#"} cancel      
 /     Drag to select an area on the map below
+
 #map-container
-#statusbar
+#map-statusbar
   .container
-    .map
-      .current_bounds
-        Current bounds 
-        %span.bounding_box 
+    / .toggle_fullscreen
+    /   Full Screen Map    
+    .current_bounds
+      Current bounds 
+      %span.bounding_box 
        
 :javascript
 
@@ -141,3 +143,21 @@
     $('a.toggle').html("Turn on selection mode");
     boxControl.box.deactivate();
   });
+  
+  $('select.hazard_layers').change(function () {
+    re = new RegExp($(this).val()+"(.*)", "i")
+    console.log(re);    
+    l = map.getLayersByName(re)[0]
+    l.setVisibility(false);
+    l.setVisibility(true);
+  });
+  
+  $('select.exposure_layers').change(function () {
+    console.log($(this).val());
+    re = new RegExp($(this).val()+".*")
+    console.log(re);    
+    l = map.getLayersByName(re)[0]
+    l.setVisibility(false);
+    l.setVisibility(true);
+  });
+  

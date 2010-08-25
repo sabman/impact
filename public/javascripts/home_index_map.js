@@ -72,145 +72,127 @@ var ol_wms = new OpenLayers.Layer.WMS("OpenLayers WMS",
 
 boxLayer = new OpenLayers.Layer.Vector("Bounding Box", {displayInLayerSwitcher: false, visibility: true});
 
-var earthquake_intensity_1hz10pc50 = new OpenLayers.Layer.WMS("earthquake_intensity_1hz10pc5",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "hazard:earthquake_intensity_1hz10pc50",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
+layers = [gphy, gsat, ghyb, gmap, ol_wms]
+// Add the created layers to the map
+map.addLayers(layers);
+
+var hazard_layers = []
+$.getJSON('/hazards.json', function(data) {
+  for (var i=0; i < data.length; i++) {
+      map.addLayers([new OpenLayers.Layer.WMS(data[i],
+          "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+          {layers: "hazard:"+data[i], transparent: "true", format: "image/png", projection: "EPSG:4326"},
+          {isBaseLayer: false, visibility: false, opacity: 0.8})]);
+  };
+});
+
+var exposure_layers = []
+$.getJSON('/exposures.json', function(data) {
+  for (var i=0; i < data.length; i++) {
+    map.addLayers([new OpenLayers.Layer.WMS(data[i],
+        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+        {layers: "exposure:"+data[i], transparent: "true", format: "image/png", projection: "EPSG:4326"},
+        {isBaseLayer: false, visibility: false, opacity: 0.8})]);      
+  };
+});
 
 
-var shakemap_padang_20090930 = new OpenLayers.Layer.WMS("shakemap_padang_20090930",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "hazard:shakemap_padang_20090930",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-
-var lembang_scenario_intensity = new OpenLayers.Layer.WMS("lembang_scenario_intensity",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "hazard:lembang_scenario_intensity",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-
-var population_2010 = new OpenLayers.Layer.WMS("population_2010",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "exposure:population_2010",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-var earthquake_fatalities_1hz10pc50 = new OpenLayers.Layer.WMS("earthquake_fatalities_1hz10pc",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "impact:earthquake_fatalities_1hz10pc50",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-
-var district_boundaries = new OpenLayers.Layer.WMS("district_boundaries",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "boundaries:district_boundaries",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-
-var subdistrict_boundaries = new OpenLayers.Layer.WMS("subdistrict_boundaries",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "boundaries:subdistrict_boundaries",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-
-var AIBEP_schools = new OpenLayers.Layer.WMS("AIBEP_schools",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "exposure:AIBEP_schools",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-
-var subduction_faults = new OpenLayers.Layer.WMS("subduction_faults",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "sources:subduction_faults",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-
-var subduction_zones = new OpenLayers.Layer.WMS("subduction_zones",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "sources:subduction_zones",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
-
-
-var active_volcanoes = new OpenLayers.Layer.WMS("active_volcanoes",
-                        "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-                        {
-                            layers: "sources:active_volcanoes",
-                            transparent: "true",
-                            format: "image/png"
-                        },
-                        {isBaseLayer: false, visibility: false, opacity: 0.8}
-                        );
+// var earthquake_fatalities_1hz10pc50 = new OpenLayers.Layer.WMS("earthquake_fatalities_1hz10pc",
+//                         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+//                         {
+//                             layers: "impact:earthquake_fatalities_1hz10pc50",
+//                             transparent: "true",
+//                             format: "image/png"
+//                         },
+//                         {isBaseLayer: false, visibility: false, opacity: 0.8}
+//                         );
+// 
+// 
+// var district_boundaries = new OpenLayers.Layer.WMS("district_boundaries",
+//                         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+//                         {
+//                             layers: "boundaries:district_boundaries",
+//                             transparent: "true",
+//                             format: "image/png"
+//                         },
+//                         {isBaseLayer: false, visibility: false, opacity: 0.8}
+//                         );
+// 
+// 
+// var subdistrict_boundaries = new OpenLayers.Layer.WMS("subdistrict_boundaries",
+//                         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+//                         {
+//                             layers: "boundaries:subdistrict_boundaries",
+//                             transparent: "true",
+//                             format: "image/png"
+//                         },
+//                         {isBaseLayer: false, visibility: false, opacity: 0.8}
+//                         );
+// 
+// 
+// var AIBEP_schools = new OpenLayers.Layer.WMS("AIBEP_schools",
+//                         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+//                         {
+//                             layers: "exposure:AIBEP_schools",
+//                             transparent: "true",
+//                             format: "image/png"
+//                         },
+//                         {isBaseLayer: false, visibility: false, opacity: 0.8}
+//                         );
+// 
+// 
+// var subduction_faults = new OpenLayers.Layer.WMS("subduction_faults",
+//                         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+//                         {
+//                             layers: "sources:subduction_faults",
+//                             transparent: "true",
+//                             format: "image/png"
+//                         },
+//                         {isBaseLayer: false, visibility: false, opacity: 0.8}
+//                         );
+// 
+// 
+// var subduction_zones = new OpenLayers.Layer.WMS("subduction_zones",
+//                         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+//                         {
+//                             layers: "sources:subduction_zones",
+//                             transparent: "true",
+//                             format: "image/png"
+//                         },
+//                         {isBaseLayer: false, visibility: false, opacity: 0.8}
+//                         );
+// 
+// 
+// var active_volcanoes = new OpenLayers.Layer.WMS("active_volcanoes",
+//                         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
+//                         {
+//                             layers: "sources:active_volcanoes",
+//                             transparent: "true",
+//                             format: "image/png"
+//                         },
+//                         {isBaseLayer: false, visibility: false, opacity: 0.8}
+//                         );
 
 
 // Map extent for Indonesia in Spherical Mercator coordinates
 var initial_boundary = new OpenLayers.Bounds(9062374, -1374643, 15891564, 1130045);
 
-// Add the created layers to the map
-map.addLayers([gphy, gsat, ghyb, gmap, ol_wms, 
-    earthquake_intensity_1hz10pc50, 
-    shakemap_padang_20090930, 
-    lembang_scenario_intensity, 
-    population_2010,
-    earthquake_fatalities_1hz10pc50, 
-    district_boundaries, 
-    subdistrict_boundaries, 
-    AIBEP_schools, 
-    subduction_faults, 
-    subduction_zones, 
-    active_volcanoes,
-    boxLayer]);
 
+// [gphy, gsat, ghyb, gmap, ol_wms, 
+//     earthquake_intensity_1hz10pc50, 
+//     shakemap_padang_20090930, 
+//     lembang_scenario_intensity, 
+//     population_2010,
+//     earthquake_fatalities_1hz10pc50, 
+//     district_boundaries, 
+//     subdistrict_boundaries, 
+//     AIBEP_schools, 
+//     subduction_faults, 
+//     subduction_zones, 
+//     active_volcanoes,
+//     boxLayer]
 // Enable switching of layers	  
+
 map.addControl(new OpenLayers.Control.LayerSwitcher({displayClass: 'olControlLayerSwitcher'}));
 
 // Show coordinates (as lat and lon in WGS84) under mouse pointer	  
@@ -259,3 +241,4 @@ function init_box_control() {
   });
   map.addControl(boxControl);  
 }
+
