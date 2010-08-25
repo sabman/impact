@@ -1,5 +1,7 @@
 ImpactForecast::Application.routes.draw do |map|
   
+  resources :layers
+
   root :to => "application#home"
   match '/sandbox' => "application#sandbox"
   resources :hazards

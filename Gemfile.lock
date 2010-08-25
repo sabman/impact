@@ -78,6 +78,9 @@ GEM
     mime-types (1.16)
     nifty-generators (0.4.0)
     nokogiri (1.4.3.1)
+    paperclip (2.3.3)
+      activerecord
+      activesupport
     pg (0.9.0)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -143,6 +146,7 @@ DEPENDENCIES
   httparty
   machinist (>= 2.0.0.beta1)
   nifty-generators
+  paperclip
   pg
   rails (= 3.0.0.rc)
   rspec

@@ -12,6 +12,6 @@ wcs_url, layername = sys.argv[1], sys.argv[2]
 c  = coverage.Coverage(wcs_url, layername)
 wcs_url_file =  riat_websocket_root_dir+'/lib/riat_python_api/wcs_url.txt'
 os.system("rm "+wcs_url_file)
-f = open(wcs_url_file, 'w')
+f = open(wcs_url_file, 'w+')
 f.write(c.get_url())
 f.close

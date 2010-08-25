@@ -1,0 +1,35 @@
+= form_for(@layer, :html => { :multipart => true }) do |f|
+  - if @layer.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@layer.errors.count, 'error')} prohibited this user from being saved:"
+      %ul
+      - @layer.errors.full_messages.each do |msg|
+        %li= msg
+  
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  .field
+    = f.label :description
+    %br
+    = f.text_area :description
+  .field
+    = f.label "Data file"
+    %br
+    = f.file_field :raw_data
+  .field
+    = f.label :data_format
+    %br
+    = f.text_field :data_format
+  .field
+    = f.label :workspace
+    %br
+    = f.text_field :workspace
+  .field
+    = f.label :category
+    %br
+    = f.text_field :category
+
+  .actions
+    = f.submit
