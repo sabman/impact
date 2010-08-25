@@ -16,3 +16,4 @@ geodata/impact/*
 app/stylesheets/.sass-cache
 nohup.out
 lib/riat_python_api/wcs_url.txt
+public/system/raw_datas
