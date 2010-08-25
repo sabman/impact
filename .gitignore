@@ -15,3 +15,4 @@ geodata/impact/*
 *.pyc
 app/stylesheets/.sass-cache
 nohup.out
+lib/riat_python_api/wcs_url.txt
