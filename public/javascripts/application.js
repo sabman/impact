@@ -4,7 +4,8 @@ jQuery(function () {
 var Riat = {
   bounding_box  : [0, 0, 0, 0],
   hazard        : null,
-  exposure      : null
+  exposure      : null,
+  impact        : null  
 }
 
 Riat.precision = function(original, precision) {
@@ -20,3 +21,5 @@ Riat.olBounds = (function() {
     this.bounding_box[2],
     this.bounding_box[3]);
 }); 
+
+
