@@ -1,0 +1,19 @@
+.container
+  %h1 Show Layer
+  %p
+    = link_to 'back', layers_path
+    = link_to 'edit', edit_layer_path(@layer)
+
+  %dl
+    %dt= Layer.human_attribute_name :name
+    %dd= @layer.name
+    %dt= Layer.human_attribute_name :description
+    %dd= @layer.description
+    %dt= Layer.human_attribute_name :raw_data
+    %dd= link_to "Raw data", @layer.raw_data.url
+    %dt= Layer.human_attribute_name :data_format
+    %dd= @layer.data_format
+    %dt= Layer.human_attribute_name :workspace
+    %dd= @layer.workspace
+    %dt= Layer.human_attribute_name :category
+    %dd= @layer.category

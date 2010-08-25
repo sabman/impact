@@ -20,8 +20,6 @@
     = javascript_include_tag "highcharts"
     = javascript_include_tag 'json2'
     = javascript_include_tag 'inflection'
-    = javascript_include_tag 'jquery.base64'
-    / = javascript_include_tag 'https://getfirebug.com/firebug-lite.js'
     = stylesheet_link_tag '/javascripts/css/uniform.default.css'
 
     / setup websocket includes
@@ -40,6 +38,7 @@
 
     #footer.bp
       #footer_content
+        = yield(:footer)
         #footer_left
           %ul
             %li 
@@ -53,7 +52,6 @@
             %li 
               %a{:href => "/static/docs"} Documentation
             %li 
-              %a{:href => "/static/api"} About
+              %a{:href => "/static/api"} REST API
             %li 
               %a{:href => "/static/contribute"} Contribute
-          
