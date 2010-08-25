@@ -100,7 +100,7 @@
                   ); 
         map.addLayer(impact);        
       };
-      console.log(e.data);
+      // console.log(e.data);
     };
     ws.onclose = function() {
       console.log("onclose");
@@ -113,37 +113,41 @@
   $(document).ready(function(){
     init_home_index_map();
     init_websocket();
-    init_box_control();
-    
+    init_box_control();    
   });
 
   $('button').click(function() {
-    if(Riat.olBounds().getWidth() > 10 )
-    {
+    // validate Riat
+    if(Riat.olBounds().getWidth() > 10 ){
       alert("Extents are too big please zoom in");
-      return null
+      return null;
+    }
+    Riat.hazard = $('.hazard select').val();
+    Riat.exposure = $('.exposure select').val();
+    // console.log(Riat.bounding_box + "\n" + Riat.hazard + "\n" + Riat.exposure);
+    if (Riat.hazard == "select" || Riat.exposure == "select" ) {
+      alert("Pleases make sure you have selected Hazard and Exposure layers");
+      return null;
     }
     $(this).addClass("disabled");
     $('.results').hide();    
     $('.loading').show();
-    Riat.hazard = $('.hazard select').val();
-    Riat.exposure = $('.exposure select').val();
-    console.log(Riat.bounding_box + "\n" + Riat.hazard + "\n" + Riat.exposure);
     encoded_riat = JSON.stringify(Riat);
-    console.log(encoded_riat);
+    // console.log(encoded_riat);
     ws.send(encoded_riat);
   })
 
   $('a.toggle').toggle(function() {
-    // $('.message').show("fast");
     $(this).addClass("disabled");    
     $('a.toggle').html("Turn off selection mode");
     boxControl.box.activate();
   }, function() {
-    // $('.message').hide("fast");
     $(this).removeClass("disabled");    
     $('a.toggle').html("Turn on selection mode");
     boxControl.box.deactivate();
+    for (var i=0; i < boxLayer.features.length; i++) {
+      boxLayer.destroyFeatures(boxLayer.features[i]);
+    };    
   });
   
   $('select.hazard_layers').change(function () {

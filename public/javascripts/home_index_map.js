@@ -2,31 +2,40 @@ var map;
 var boxLayer;
 var exposure_layers = [];
 var hazard_layers = [];
+var boxControl;
+var merc_proj = new OpenLayers.Projection("EPSG:900913");
+var wgs84_proj = new OpenLayers.Projection("EPSG:4326");
 
 function init_home_index_map(){
 
 function mapEvent(event) {
+    // if (boxLayer.features.length > 0) {
+    //   bounds = boxLayer.features[0].getBounds();
+    //   console.log(bounds.toString());
+    // } else{
+    //   bounds = map.getExtent();
+    //   bounds = bounds.transform(
+    //     map.projection,
+    //     map.displayProjection      
+    //   );      
+    // }
     bounds = map.getExtent();
     bounds = bounds.transform(
       map.projection,
       map.displayProjection      
-    );
-    console.log(bounds.toString());
-    console.log(Riat.olBounds().getWidth());
-    console.log(Riat.olBounds().getHeight());
+    );      
+    // console.log(bounds.toString());
+    // console.log(Riat.olBounds().getWidth());
+    // console.log(Riat.olBounds().getHeight());
     $('.current_bounds .bounding_box').html([
       Riat.precision(bounds.left),
       Riat.precision(bounds.bottom),
       Riat.precision(bounds.right), 
       Riat.precision(bounds.top)
     ].join(", "));
-    // $('.current_bounds .width').html(Riat.precision(Riat.olBounds().getWidth()));
-    // $('.current_bounds .height').html(Riat.precision(Riat.olBounds().getHeight()));
     Riat.bounding_box = bounds.toArray();
 }
 
-var merc_proj = new OpenLayers.Projection("EPSG:900913");
-var wgs84_proj = new OpenLayers.Projection("EPSG:4326");
 
 var options = {
     // the "community" epsg code for spherical mercator
@@ -212,35 +221,27 @@ map.zoomToExtent(initial_boundary);
 
 } // init_home_map
 
-var boxControl;
 function init_box_control() {
   boxControl = new OpenLayers.Control();
   OpenLayers.Util.extend(boxControl, {
      draw: function() {
-       this.box = new OpenLayers.Handler.RegularPolygon(boxControl,
-         {"done": this.notice}, {sides:4, irregular:true, persist:true});
+       this.box = new OpenLayers.Handler.RegularPolygon(boxControl, {"done": this.notice}, {sides:4, irregular:true, persist:true});
        this.box.deactivate();
      },
-
+     
      notice: function(geom) {
-       console.log(geom.CLASS_NAME);
        bounds = geom.getBounds();
        Riat.bounding_box = bounds.toArray();
-       console.log(bounds.toArray()); 
        map.zoomToExtent(bounds);
-       // boxLayer = map.getLayersByName("Bounding Box")[0];
        for (var i=0; i < boxLayer.features.length; i++) {
-        boxLayer.destroyFeatures(boxLayer.features[i]);
+         boxLayer.destroyFeatures(boxLayer.features[i]);
        };
-       console.log(boxLayer.features.length);
        var f = bounds.toGeometry();
        boxLayer.addFeatures([f]);
        boxLayer.redraw();
-       console.log(boxLayer.features.length);
      },
-          
-     displayClass: 'olControlBox'
-     
+               
+     displayClass: 'olControlBox'     
   });
   map.addControl(boxControl);  
 }
