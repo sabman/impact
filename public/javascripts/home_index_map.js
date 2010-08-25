@@ -1,5 +1,7 @@
 var map;
 var boxLayer;
+var exposure_layers = [];
+var hazard_layers = [];
 
 function init_home_index_map(){
 
@@ -76,24 +78,25 @@ layers = [gphy, gsat, ghyb, gmap, ol_wms]
 // Add the created layers to the map
 map.addLayers(layers);
 
-var hazard_layers = []
 $.getJSON('/hazards.json', function(data) {
   for (var i=0; i < data.length; i++) {
       map.addLayers([new OpenLayers.Layer.WMS(data[i],
           "http://www.aifdr.org:8080/geoserver/wms?service=wms",
           {layers: "hazard:"+data[i], transparent: "true", format: "image/png", projection: "EPSG:4326"},
           {isBaseLayer: false, visibility: false, opacity: 0.8})]);
+    hazard_layers[i] = data[i];
   };
 });
 
-var exposure_layers = []
 $.getJSON('/exposures.json', function(data) {
   for (var i=0; i < data.length; i++) {
     map.addLayers([new OpenLayers.Layer.WMS(data[i],
         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
         {layers: "exposure:"+data[i], transparent: "true", format: "image/png", projection: "EPSG:4326"},
         {isBaseLayer: false, visibility: false, opacity: 0.8})]);      
+    exposure_layers[i] = data[i];
   };
+  
 });
 
 

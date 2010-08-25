@@ -13,6 +13,7 @@
     .hazard
       %h2 Select natural hazard
       %select.hazard_layers
+        %option{:value => "select", :selected => "selected"}Please select
         = unless Hazard.layernames.nil?
           =Hazard.layernames.each do |hz| 
             %option{:value => "#{hz}"}=hz.humanize
@@ -21,6 +22,7 @@
     .exposure
       %h2 Select exposure
       %select.exposure_layers
+        %option{:value => "select", :selected => "selected"}Please select
         = unless Exposure.layernames.nil?
           =Exposure.layernames.each do |e| 
             %option{:value => "#{e}"}=e.humanize
@@ -145,19 +147,35 @@
   });
   
   $('select.hazard_layers').change(function () {
-    re = new RegExp($(this).val()+"(.*)", "i")
-    console.log(re);    
-    l = map.getLayersByName(re)[0]
-    l.setVisibility(false);
-    l.setVisibility(true);
+    if ($(this).val() != "select") {
+      re = new RegExp($(this).val()+"(.*)", "i")
+      l = map.getLayersByName(re)[0]
+      l.setVisibility(false);
+      l.setVisibility(true);
+    }
+    else if($(this).val() == "select")
+    {
+      for (var i=0; i < hazard_layers.length; i++) {
+        l = map.getLayersByName(hazard_layers[i])[0]
+        l.setVisibility(false);
+      };
+    };    
   });
   
   $('select.exposure_layers').change(function () {
-    console.log($(this).val());
-    re = new RegExp($(this).val()+".*")
-    console.log(re);    
-    l = map.getLayersByName(re)[0]
-    l.setVisibility(false);
-    l.setVisibility(true);
+    if ($(this).val() != "select") {
+      re = new RegExp($(this).val()+".*")
+      l = map.getLayersByName(re)[0]
+      l.setVisibility(false);
+      l.setVisibility(true);
+    }
+    else if($(this).val() == "select")
+    {
+      for (var i=0; i < exposure_layers.length; i++) {
+        l = map.getLayersByName(exposure_layers[i])[0]
+        l.setVisibility(false);
+      };
+    };
+    
   });
   
