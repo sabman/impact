@@ -15,3 +15,7 @@ require 'machinist/active_record'
 # Boundary.blueprint do
   # Attributes here
 # end
+
+Layer.blueprint do
+  # Attributes here
+end
