@@ -46,6 +46,7 @@ class LayersController < ApplicationController
       if @layer.save
         format.html { redirect_to(@layer, :notice => 'Layer was successfully created.') }
         format.xml  { render :xml => @layer, :status => :created, :location => @layer }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @layer.errors, :status => :unprocessable_entity }
@@ -62,6 +63,7 @@ class LayersController < ApplicationController
       if @layer.update_attributes(params[:layer])
         format.html { redirect_to(@layer, :notice => 'Layer was successfully updated.') }
         format.xml  { head :ok }
+        format.js
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @layer.errors, :status => :unprocessable_entity }
