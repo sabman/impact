@@ -32,7 +32,7 @@ module Paperclip
       File.open(vrt, "w"){ |f| f.write(template.result(binding))}
       outfile = "#{path}/#{@basename}.json"
       args = " -f GeoJSON  #{outfile} #{vrt}"
-      binary = "/usr/local/bin/ogr2ogr"
+      binary = "/usr/bin/ogr2ogr"
       cmd = binary + args 
       Rails.logger.info cmd
       begin

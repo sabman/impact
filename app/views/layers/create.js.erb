@@ -79,7 +79,7 @@
   
   var geojson_format = new OpenLayers.Format.GeoJSON({'internalProjection': map.baseLayer.projection, 
                                                       'externalProjection': new OpenLayers.Projection("EPSG:4326")});
-  var vector_layer = new OpenLayers.Layer.Vector(<%= "\"#{File.basename(@layer.raw_data.url)}\""%>, {
+  var vector_layer = new OpenLayers.Layer.Vector(<%= "\"#{(@layer.name.blank? ? File.basename(@layer.raw_data.url, '.*') : @layer.name)}\""%>, {
       projection: map.baseLayer.projection,
       strategies: [strategy],
       styleMap: new OpenLayers.StyleMap({
