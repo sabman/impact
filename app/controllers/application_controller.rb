@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   layout 'application'
   
   def home
+    @layer = Layer.new    
     render :template => 'home/index'
   end
   

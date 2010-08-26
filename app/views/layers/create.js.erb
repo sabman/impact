@@ -1,0 +1,110 @@
+<%= remotipart_response do %>
+
+
+  function onPopupClose(evt) {
+      selectControl.unselect(selectedFeature);
+  }
+
+  function onFeatureSelect(e) {
+      console.log(e.CLASS_NAME);
+      console.log(e.feature);
+      selectedFeature = e.feature;
+      f = e.feature
+      if(f.cluster) {
+        popup = new OpenLayers.Popup.FramedCloud("chicken", 
+                     f.geometry.getBounds().getCenterLonLat(),
+                     null,
+                     "<div style='font-size:.8em; color:#CCC;'>"                   +
+                        "Name: "          + f.attributes.Name         + "<br />"  +
+                        "Village: "       + f.attributes.Village      + "<br />"  +
+                        "Construction: "  + f.attributes.Constructi   +
+                      "</div>", null, true, onPopupClose);
+      } else {
+        popup = new OpenLayers.Popup.FramedCloud("chicken", 
+                     f.geometry.getBounds().getCenterLonLat(),
+                     null,
+                     "<div style='font-size:.8em; color:#CCC;'>"                   +
+                        "Total schools: " + f.attributes.count         + "<br />"  +
+                        "<a href=\"javascript:map.zoomIn()\">Zoom In</a>" +
+                      "</div>", null, true, onPopupClose);
+      }
+      
+      f.popup = popup;
+      map.addPopup(popup);
+  }
+  function onFeatureUnselect(e) {
+      f = e.feature    
+      map.removePopup(f.popup);
+      f.popup.destroy();
+      f.popup = null;
+  }    
+
+
+  function display(event) {
+      var f = event.feature;
+      var el = $("output");
+      if(f.cluster) {
+          el.innerHTML = "cluster of " + f.attributes.count;
+      } else {
+          el.innerHTML = "unclustered " + f.geometry;
+      }
+  }
+            
+  var style = new OpenLayers.Style({
+        pointRadius: "${radius}",
+        fillColor: "#ffcc66",
+        fillOpacity: 0.8,
+        strokeColor: "#cc6633",
+        strokeWidth: "${width}",
+        strokeOpacity: 0.8
+    }, {
+        context: {
+            width: function(feature) {
+                return (feature.cluster) ? 2 : 1;
+            },
+            radius: function(feature) {
+                var pix = 2;
+                if(feature.cluster) {
+                    pix = Math.min(feature.attributes.count, 7) + 2;
+                }
+                return pix;
+            }
+        }
+    });
+
+  //Display a Javascript alert
+  // alert(<%= "\"#{@layer.raw_data.url}\""%>);
+  
+  var strategy = new OpenLayers.Strategy.Cluster();
+  
+  var geojson_format = new OpenLayers.Format.GeoJSON({'internalProjection': map.baseLayer.projection, 
+                                                      'externalProjection': new OpenLayers.Projection("EPSG:4326")});
+  var vector_layer = new OpenLayers.Layer.Vector(<%= "\"#{File.basename(@layer.raw_data.url)}\""%>, {
+      projection: map.baseLayer.projection,
+      strategies: [strategy],
+      styleMap: new OpenLayers.StyleMap({
+          "default": style,
+          "select": {
+              fillColor: "#8aeeef",
+              strokeColor: "#32a8a9"
+          }
+      })      
+  }); 
+  
+  // create a select control on hover
+  var select = new OpenLayers.Control.SelectFeature(vector_layer, {hover: true});    
+  // on select events register callbacks
+  vector_layer.events.on({'featureselected': onFeatureSelect,'featureunselected': onFeatureUnselect });
+  map.addLayer(vector_layer);
+  map.addControl(select);
+  select.activate();  
+  
+  $.ajax({
+    type: "GET",
+    url: <%= "\"#{@layer.raw_data.url}\""%>,
+    success: function (data) {
+      features = geojson_format.read(data)
+      vector_layer.addFeatures(features) 
+    }
+  });
+<% end %>

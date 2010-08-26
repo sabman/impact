@@ -8,7 +8,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'em-websocket'
 gem 'daemons'
 gem 'httparty'
-# gem 'remotipart'
+gem 'remotipart'
 gem 'paperclip'
 
 group :test, :development do

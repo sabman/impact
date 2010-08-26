@@ -44,14 +44,6 @@
           %a.download{:href => '#'} Download impact data
           %a.ge{:href => '#'} View in Google Earth
 
-/ .message
-/   .container
-/     .buttons
-/       %a.done{:href => "#"} Done
-/       or
-/       %a.cancel{:href => "#"} cancel      
-/     Drag to select an area on the map below
-
 #map-container
 #map-statusbar
   .container
@@ -60,7 +52,11 @@
     .current_bounds
       Current bounds 
       %span.bounding_box 
-       
+
+
+= content_for (:footer) do
+  = render 'layers/form'
+  
 :javascript
 
   // Set URL of your WebSocketMain.swf here:
