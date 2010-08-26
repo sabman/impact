@@ -2,7 +2,7 @@
 %html
   %head
     %title
-      = yield(:title) || "Risk In A Box"
+      = "Risk In A Box"
     = csrf_meta_tag
     = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'map.css',    :media => 'screen, projection'
@@ -32,27 +32,26 @@
   %body.bp
     #header
       #header_content
-        %h2 
-          Risk In A Box
+        %h2 Risk In A Box
           
     = yield
 
     #footer.bp
       #footer_content
         = yield(:footer)
-        #footer_left
-          %ul
-            %li 
-              %a{:href => "http://www.aifdr.org/public"} AIFDR
-            %li 
-              %a{:href => "/static/about"} About
-            %li 
-              %a{:href => "/static/contact"} Contact
-        #footer_right
-          %ul
-            %li 
-              %a{:href => "/static/docs"} Documentation
-            %li 
-              %a{:href => "/static/api"} REST API
-            %li 
-              %a{:href => "/static/contribute"} Contribute
+        / #footer_left
+        /   %ul
+        /     %li 
+        /       %a{:href => "http://www.aifdr.org/public"} AIFDR
+        /     %li 
+        /       %a{:href => "/static/about"} About
+        /     %li 
+        /       %a{:href => "/static/contact"} Contact
+        / #footer_right
+        /   %ul
+        /     %li 
+        /       %a{:href => "/static/docs"} Documentation
+        /     %li 
+        /       %a{:href => "/static/api"} REST API
+        /     %li 
+        /       %a{:href => "/static/contribute"} Contribute
