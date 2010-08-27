@@ -1,8 +1,37 @@
+@import _mixins
+
+#map-wrapper
+  height: 500px
+  width: 920px
+  margin: 0 auto
+  position: relative
+  padding: 30px 0 10px
+  &.is-fullscreen
+    margin: 0
+    width: auto
+  .fullscreen  
+    +tiny-rounded-top
+    +light-inset
+    background: #ccc
+    color: #222
+    font-size: 13px
+    display: block
+    position: absolute
+    right: 0
+    top: 0
+    text-decoration: none
+    padding: 5px 10px 5px
+    &:hover
+      background: #d6effd
+      
+
 #map-container
-  height: 600px
-  border: 1px solid #ccc
-  margin: 0 10px 10px
-  min-width: 920px
+  border: 2px #ccc solid
+  height: 100%
+  // margin: 0 10px 10px
+  // min-width: 920px
+  // width: 100%
+  
 
   .olControlLayerSwitcher .layersDiv
     background-color: #3b3b37

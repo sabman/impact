@@ -355,4 +355,3 @@ function init_box_control() {
   });
   map.addControl(boxControl);  
 }
-

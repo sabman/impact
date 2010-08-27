@@ -1,4 +1,5 @@
 #uploadform
+  %h3 Upload additional layer
   = form_for(@layer, :html => { :multipart => true }, :remote => true) do |f|
     - if @layer.errors.any?
       #errorExplanation
@@ -9,31 +10,13 @@
   
     .field
       = f.label :name
-      %br
       = f.text_field :name
-    / .field
-    /   = f.label :description
-    /   %br
-    /   = f.text_area :description
     .field
       = f.label "Data file"
-      %br
       = f.file_field :raw_data
-    / .field
-    /   = f.label :data_format
-    /   %br
-    /   = f.text_field :data_format
-    / .field
-    /   = f.label :workspace
-    /   %br
-    /   = f.text_field :workspace
-    / .field
-    /   = f.label :category
-    /   %br
-    /   = f.text_field :category
 
     .actions
-      = f.submit
+      %button{:type => 'submit'} Create layer
 
 :javascript
   $()

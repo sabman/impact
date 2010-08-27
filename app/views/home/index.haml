@@ -44,7 +44,9 @@
           %a.download{:href => '#'} Download impact data
           %a.ge{:href => '#'} View in Google Earth
 
-#map-container
+#map-wrapper
+  %a.fullscreen{:href => "#"} Toggle fullscreen
+  #map-container
 #map-statusbar
   .container
     / .toggle_fullscreen
@@ -52,10 +54,11 @@
     .current_bounds
       Current bounds 
       %span.bounding_box 
+    = render 'layers/form'
 
+/ 
+/ = content_for (:footer) do
 
-= content_for (:footer) do
-  = render 'layers/form'
   
 :javascript
 
@@ -179,3 +182,27 @@
     
   });
   
+  // Fullscreen toggle
+  $('.fullscreen').click(function(e)
+  {
+    e.preventDefault();
+    var wrapper = $('#map-wrapper');
+    if(wrapper.hasClass('is-fullscreen'))
+    {
+      wrapper.removeClass('is-fullscreen').css('height', '500px');
+    } else {
+      wrapper.addClass('is-fullscreen').css('height', window.innerHeight);
+      window.location.hash = 'map-wrapper';
+    }
+    // TODO trigger redraw on the map
+  });
+  
+  // Resize map when user resizes window
+  $(window).resize(function()
+  {
+    var wrapper = $('#map-wrapper.is-fullscreen');
+    if (wrapper)
+    {
+      wrapper.css('height', window.innerHeight);
+    }
+  });

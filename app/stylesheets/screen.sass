@@ -51,7 +51,8 @@ body.bp
     background: #a00
     #header_content
       +container
-      padding-top: 16px
+      background: transparent url(../images/riab-logos.png) right 8px no-repeat
+      padding-top: 26px
       #logo_aifdr
         background: transparent url(../images/aifdr_logo_50.png) no-repeat left center
       #logo_bnpb
@@ -60,10 +61,28 @@ body.bp
         +dark_inset
         color: #fff
         font-family: 'BebasRegular'
-        text-align: center
+        // text-align: center
         font-size: 26px
         letter-spacing: .2em
-        margin-bottom: 35px
+        margin-bottom: 45px
+        float: left
+      #nav
+        +clearfix
+        list-style: none
+        margin: 8px 250px 0 0
+        padding: 0
+        float: right
+        li
+          margin: 0
+          padding: 0
+          float: left
+          a
+            +dark-inset
+            color: #fff
+            text-decoration: none
+            &:hover
+              text-decoration: underline
+          
 
   .pagehead
     position: relative
@@ -249,12 +268,20 @@ body.two-col
       +medium-button
       +green-button
 
-// .fullscreen
-//   display: block
-//   // set the div in the top-left corner of the screen
-//   position: absolute
-//   top: 0
-//   left: 0
-//   // set the width and height to 100% of the screen
-//   width: 100%
-//   height: 100%
+#uploadform
+  margin: 20px 0 0
+  h3
+    font-size: 16px
+    font-weight: bold
+  label
+    font-size: 10px
+    letter-spacing: .25em
+    text-transform: uppercase
+  input
+    display: block
+    margin: 2px 0 5px
+  button
+    +medium_button    
+    +green_button
+    &:hover
+      +blue-button
