@@ -1,4 +1,9 @@
-#map-container { height: 600px; border: 1px solid #cccccc; margin: 0 10px 10px; min-width: 920px; }
+#map-wrapper { height: 500px; width: 920px; margin: 0 auto; position: relative; padding: 30px 0 10px; }
+#map-wrapper.is-fullscreen { margin: 0; width: auto; }
+#map-wrapper .fullscreen { -webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-topright: 2px; text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0; background: #cccccc; color: #222222; font-size: 13px; display: block; position: absolute; right: 0; top: 0; text-decoration: none; padding: 5px 10px 5px; }
+#map-wrapper .fullscreen:hover { background: #d6effd; }
+
+#map-container { border: 2px #cccccc solid; height: 100%; }
 #map-container .olControlLayerSwitcher .layersDiv { background-color: #3b3b37; }
 #map-container .olControlLayerSwitcher > div { display: none; }
 #map-container .olControlLayerSwitcher div.minimizeDiv, #map-container .olControlLayerSwitcher div.maximizeDiv, #map-container .olControlLayerSwitcher div.layersDiv { display: block; }
