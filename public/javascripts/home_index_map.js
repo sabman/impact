@@ -287,27 +287,29 @@ var School_lembang_buildingloss = new OpenLayers.Layer.WMS("School lembang build
                         },
                         {isBaseLayer: false, visibility: false, opacity: 0.8}
                         );
+var osm = new OpenLayers.Layer.OSM();
 
-                        map.addLayers([
-                          Basemap_600dpi, 
-                          Basemap_3d, 
+map.addLayers([
+  Basemap_600dpi, 
+  Basemap_3d, 
+  osm,
+  
+  Earthquake_Fatalities_Padang_2009, 
+  Earthquake_Fatalities_National, 
+  Earthquake_Fatalities_Lembang, 
 
-                          Earthquake_Fatalities_Padang_2009, 
-                          Earthquake_Fatalities_National, 
-                          Earthquake_Fatalities_Lembang, 
+  Province_Boundaries, 
+  District_Boundaries, 
+  Subdistrict_Boundaries, 
 
-                          Province_Boundaries, 
-                          District_Boundaries, 
-                          Subdistrict_Boundaries, 
+  Subduction_Zones, 
+  Earthquake_Faults, 
+  Active_Volcanoes, 
 
-                          Subduction_Zones, 
-                          Earthquake_Faults, 
-                          Active_Volcanoes, 
+  AIBEP_schools, 
+  School_lembang_buildingloss
+]);
 
-                          AIBEP_schools, 
-                          School_lembang_buildingloss
-                        ]);
-                        
 /// End Adding the layers /////                                        
 
 
