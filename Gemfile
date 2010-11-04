@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "rails", "3.0.0.rc"
+gem "rails", "3.0.0"
 gem "haml"
 gem "compass"
 gem "pg"
@@ -13,7 +13,7 @@ gem 'paperclip'
 
 group :test, :development do
   gem 'rspec'
-  gem "rspec-rails", ">= 2.0.0.beta.19"
+  gem "rspec-rails", ">= 2.0.0"
   gem "cucumber"
   gem "cucumber-rails"
 end

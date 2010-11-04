@@ -13,6 +13,7 @@ table { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inhe
 
 a img { border: none; }
 
+@charset "UTF-8";
 body.bp .box { padding: 1.5em; margin-bottom: 1.5em; background: #e5ecf9; }
 body.bp div.border { padding-right: 4px; margin-right: 5px; border-right: 1px solid #eeeeee; }
 body.bp div.colborder { padding-right: 23px; margin-right: 24px; border-right: 1px solid #eeeeee; }
