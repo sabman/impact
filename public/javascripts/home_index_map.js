@@ -3,30 +3,17 @@ var boxLayer;
 var exposure_layers = [];
 var hazard_layers = [];
 var boxControl;
-var merc_proj = new OpenLayers.Projection("EPSG:900913");
-var wgs84_proj = new OpenLayers.Projection("EPSG:4326");
+var merc_proj   = new OpenLayers.Projection("EPSG:900913");
+var wgs84_proj  = new OpenLayers.Projection("EPSG:4326");
 
 function init_home_index_map(){
 
 function mapEvent(event) {
-    // if (boxLayer.features.length > 0) {
-    //   bounds = boxLayer.features[0].getBounds();
-    //   console.log(bounds.toString());
-    // } else{
-    //   bounds = map.getExtent();
-    //   bounds = bounds.transform(
-    //     map.projection,
-    //     map.displayProjection      
-    //   );      
-    // }
     bounds = map.getExtent();
     bounds = bounds.transform(
       map.projection,
       map.displayProjection      
     );      
-    // console.log(bounds.toString());
-    // console.log(Riat.olBounds().getWidth());
-    // console.log(Riat.olBounds().getHeight());
     $('.current_bounds .bounding_box').html([
       Riat.precision(bounds.left),
       Riat.precision(bounds.bottom),
@@ -87,12 +74,6 @@ layers = [gphy, gsat, ghyb, gmap, ol_wms]
 // Add the created layers to the map
 map.addLayers(layers);
 
-// $.ajax({
-//   url: url,
-//   dataType: 'json',
-//   data: data,
-//   success: callback
-// });
 
 //// Exposure layers /////
 $.ajax({
@@ -109,18 +90,8 @@ $.ajax({
     }}
 });
   
-// $.getJSON('/exposures.json',  function(data) {
-//   for (var i=0; i < data.length; i++) {
-//     map.addLayers([new OpenLayers.Layer.WMS(data[i],
-//         "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-//         {layers: "exposure:"+data[i], transparent: "true", format: "image/png", projection: "EPSG:4326"},
-//         {isBaseLayer: false, visibility: false, opacity: 0.8})]);      
-//     exposure_layers[i] = data[i];
-//   };
-// });
 
 //// Hazard layers /////
-
 $.ajax({
   url: '/hazards.json',
   dataType: 'json',
@@ -135,15 +106,6 @@ $.ajax({
     }}
 });
 
-// $.getJSON('/hazards.json', function(data) {
-//   for (var i=0; i < data.length; i++) {
-//       map.addLayers([new OpenLayers.Layer.WMS(data[i],
-//           "http://www.aifdr.org:8080/geoserver/wms?service=wms",
-//           {layers: "hazard:"+data[i], transparent: "true", format: "image/png", projection: "EPSG:4326"},
-//           {isBaseLayer: false, visibility: false, opacity: 0.8})]);
-//     hazard_layers[i] = data[i];
-//   };
-// });
 
 //// Rest of the layers /////
 
@@ -324,11 +286,6 @@ mp = new OpenLayers.Control.MousePosition({div: $('#projected_coords')[0]});
 mp.displayProjection = wgs84_proj; // WGS84
 map.addControl(mp);
 
-// mp2 = new OpenLayers.Control.MousePosition({div: $('#projected_coords')[0]});
-// mp2.displayProjection = new OpenLayers.Projection("EPSG:900913"); // spherical mercator - incase we wanna see it
-// map.addControl(mp2);
-
-// Zoom to initial view of Indonesia	  
 map.zoomToExtent(initial_boundary);      
 
 } // init_home_map

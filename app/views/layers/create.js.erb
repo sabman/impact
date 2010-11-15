@@ -1,6 +1,5 @@
 <%= remotipart_response do %>
 
-
   function onPopupClose(evt) {
       console.log("inside feature onPopupClose")
       // select.unselect(selectedFeature);
@@ -11,34 +10,10 @@
       console.log(e);
       // selectedFeature = e;
       f = e.feature
-      // if(f.cluster.length == 1) {
-      //   popup = new OpenLayers.Popup.FramedCloud("chicken",                      
-      //                f.cluster[0].geometry.getBounds().getCenterLonLat(),
-      //                null,
-      //                "<div style='font-size:.8em; color:#CCC;'>"                   +
-      //                   "Name: "          + f.cluster[0].attributes.Name         + "<br />"  +
-      //                   "Village: "       + f.cluster[0].attributes.Village      + "<br />"  +
-      //                   "Construction: "  + f.cluster[0].attributes.Constructi   +
-      //                 "</div>", null, true, onPopupClose);
-      // } else {
-      //   popup = new OpenLayers.Popup.FramedCloud("chicken", 
-      //                f.geometry.getBounds().getCenterLonLat(),
-      //                null,
-      //                "<div style='font-size:.8em; color:#CCC;'>"                   +
-      //                   "Total schools: " + f.attributes.count         + "<br />"  +
-      //                   "<a href=\"javascript:map.zoomIn()\">Zoom In</a>" +
-      //                 "</div>", null, true, onPopupClose);
-      // }      
-      // f.popup = popup;
-      // map.addPopup(popup);
   }
   function onFeatureUnselect(feature) {
       console.log("inside onFeatureUnselect");
       console.log(feature);
-      // f = feature
-      // map.removePopup(f.popup);
-      // f.popup.destroy();
-      // f.popup = null;
   }    
 
 

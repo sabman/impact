@@ -24,12 +24,11 @@ EventMachine.run {
       }
 
       ws.onclose { puts "Connection closed" }
+
       ws.onmessage { |msg|
-        puts msg
         if msg == nil or msg == ''
           ws.send({"message" => "Please provide bounding coordinates e.g: [106,-7.5,110,-3]"}.to_json)
         else
-          require "pp"; pp msg
           data = JSON.parse(msg)
           bbox = data["bounding_box"]
           timestamp = Time.now.strftime('%Y%m%d%H%M%S')          
@@ -37,14 +36,14 @@ EventMachine.run {
 
           #  ========================== run the model ==========================
           
-          geoserver_url = YAML.load_file("#{riat_websocket_root_dir}/./config/geoserver.yml")['host']
+          geoserver_url = YAML.load_file("#{riat_websocket_root_dir}/./config/geoserver.yml")[Rails.env]['host']
           cmd = "python #{riat_websocket_root_dir}/./lib/riat_python_api/run_impact_model.py \\
             bbox=[#{data["bounding_box"].join(",")}] \\
             timestamp=#{timestamp} \\
             hazard_layer=#{data["hazard"]} \\
             exposure_layer=#{data["exposure"]} \\
             impact_layer=#{impact_layername}"
-          puts "\n\n>>>>> #{cmd}"
+          puts "\n>>>>> #{cmd}"
           system cmd
           
           #  ========================== get download wcs link ==========================
