@@ -1,0 +1,42 @@
+development:
+  host: localhost
+  username:
+  password:
+  port:8080
+
+production:
+    host: aifdr.nomaad-labs.com
+    username: 
+    password: 
+    port:8080
+
+
+# this geoserver is for loading the model output
+
+# TODO: split into input and output geoserver
+# Future allow subscription by external geoserver
+# production
+#   input_geoservers:
+#     01:
+#       host:
+#       port
+#       username: admin
+#       password: geoserver
+#     02:
+#       host:
+#       port
+#       username: admin
+#       password: geoserver
+# 
+#   output_geoservers:
+#     01:
+#       host:
+#       port
+#       username: admin
+#       password: geoserver
+#     02:
+#       host:
+#       port
+#       username: admin
+#       password: geoserver
+
