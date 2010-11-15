@@ -3,7 +3,7 @@ config/database.yml
 config/geoserver.yml
 coverage/*
 db/*.sqlite3
-log/*.log
+log/*
 tmp/**/*
 tmp
 vendor/bundler_gems
