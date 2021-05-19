@@ -24,7 +24,7 @@ group :development do
 end
 
 group :test do
-  gem "capybara"
+  gem "capybara", ">= 0.4.0"
   gem "machinist", '>= 2.0.0.beta1'  
   gem 'faker'
 end
