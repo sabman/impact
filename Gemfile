@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "rails", "3.0.0"
+gem "rails", "4.0.0"
 gem "haml"
 gem "compass"
 gem "pg"
@@ -9,7 +9,7 @@ gem 'em-websocket'
 gem 'daemons'
 gem 'httparty'
 gem 'remotipart'
-gem 'paperclip'
+gem 'paperclip', '>= 2.3.5'
 
 group :test, :development do
   gem 'rspec'
